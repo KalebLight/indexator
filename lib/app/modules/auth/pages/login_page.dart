@@ -3,13 +3,16 @@ import 'package:indexator/app/core/data/colorsData.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
+import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = AuthController();
+    AuthRepository authRepository = AuthRepository();
+    AuthController controller = AuthController(authRepository);
+
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: LayoutBuilder(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:indexator/app/core/utils.dart';
+import 'package:indexator/app/core/data/utils.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({super.key});
