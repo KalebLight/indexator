@@ -51,8 +51,6 @@ class _LoginPageState extends State<LoginPage> {
                     ButtonDefault(
                       onTap: () async {
                         await controller.login(controller.userEmail.text, controller.userPassword.text, context);
-                        // print(controller.userEmail.text);
-                        // print(controller.userPassword.text);
                       },
                       label: 'Login',
                       status: controller.state,
