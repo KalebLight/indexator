@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
@@ -54,7 +55,12 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       label: 'Login',
                       status: controller.state,
-                    )
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Não tem uma conta? Registre-se!', style: FontData.textLink()),
+                    ),
                   ],
                 ),
               ),

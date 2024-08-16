@@ -159,9 +159,9 @@ class FontData {
       fontSize: 14,
       fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
-      color: Colors.blue,
+      color: Colors.white,
       decoration: TextDecoration.underline,
-      decorationColor: Colors.blue,
+      decorationColor: Colors.white,
       decorationThickness: 1,
     );
   }

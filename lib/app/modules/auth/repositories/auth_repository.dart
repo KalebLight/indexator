@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:indexator/app/core/data/enviroment.dart';
 import 'package:indexator/app/core/data/errors.dart';
 import 'package:indexator/app/modules/auth/responses/login_response.dart';
 
@@ -11,7 +12,7 @@ class AuthRepository {
     String password,
   ) async {
     try {
-      Response response = await dio.post('http://127.0.0.1:8000/api/login', data: {
+      Response response = await dio.post('${Enviroment.urlBase}/login', data: {
         'email': email,
         'password': password,
       });

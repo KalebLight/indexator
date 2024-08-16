@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-// import 'package:go_router/go_router.dart';
 import 'package:indexator/app/core/data/status.dart';
 import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -18,9 +17,6 @@ class AuthController {
   @observable
   StatusDefault state = StatusIdle();
 
-// criar um arquivo repository pra isso aqui
-// criar arquivo pra url da api
-//tem que quebrar isso aqui da mesma do meu corban app
   login(String email, String password, BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
