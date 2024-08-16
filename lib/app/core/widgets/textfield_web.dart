@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:indexator/app/core/data/colorsData.dart';
+import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
 
 class TextfieldWeb extends StatelessWidget {

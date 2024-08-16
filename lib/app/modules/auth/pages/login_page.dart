@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:indexator/app/core/data/colorsData.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
-import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    AuthRepository authRepository = AuthRepository();
-    AuthController controller = AuthController(authRepository);
+  State<LoginPage> createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+  final controller = Modular.get<AuthController>();
+
+  @override
+  Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: LayoutBuilder(
@@ -36,14 +40,14 @@ class LoginPage extends StatelessWidget {
                       inputType: TextInputType.emailAddress,
                       textEditingController: controller.userEmail,
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     TextfieldWeb(
                       hintText: 'Digite uma senha',
                       inputType: TextInputType.visiblePassword,
                       obscureText: true,
                       textEditingController: controller.userPassword,
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     ButtonDefault(
                       onTap: () async {
                         await controller.login(controller.userEmail.text, controller.userPassword.text, context);
