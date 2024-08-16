@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
-import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
+import 'package:indexator/app/modules/auth/controllers/sign_up_controller.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -15,7 +13,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final controller = Modular.get<AuthController>();
+  final controller = Modular.get<SignUpController>();
   @override
   void dispose() {
     controller.userName.clear();
@@ -50,29 +48,31 @@ class _SignUpPageState extends State<SignUpPage> {
                       inputType: TextInputType.name,
                       textEditingController: controller.userName,
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     TextfieldWeb(
                       hintText: 'Digite seu email',
                       inputType: TextInputType.emailAddress,
                       textEditingController: controller.userEmail,
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     TextfieldWeb(
                       hintText: 'Digite uma senha',
                       inputType: TextInputType.visiblePassword,
                       obscureText: true,
                       textEditingController: controller.userPassword,
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     TextfieldWeb(
                       hintText: 'Confirme sua senha',
                       inputType: TextInputType.visiblePassword,
                       obscureText: true,
                       textEditingController: controller.userConfirmationPassword,
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     ButtonDefault(
-                      onTap: () {},
+                      onTap: () {
+                        controller.register(context);
+                      },
                       label: 'Cadastrar',
                       status: controller.state,
                     )
