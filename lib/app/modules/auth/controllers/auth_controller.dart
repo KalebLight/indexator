@@ -39,4 +39,8 @@ class AuthController {
     ),
     backgroundColor: Colors.red,
   );
+
+  void goToSignUp() {
+    Modular.to.pushNamed('sign-up');
+  }
 }

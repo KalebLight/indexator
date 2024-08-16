@@ -1,33 +1,32 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
-import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
+  final controller = Modular.get<AuthController>();
   @override
   void dispose() {
-    // controller.userName.clear();
-    // controller.userEmail.clear();
-    // controller.userPassword.clear();
-    // controller.userConfirmationPassword.clear();
+    controller.userName.clear();
+    controller.userEmail.clear();
+    controller.userPassword.clear();
+    controller.userConfirmationPassword.clear();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    AuthRepository authRepository = AuthRepository();
-    AuthController controller = AuthController(authRepository);
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: LayoutBuilder(

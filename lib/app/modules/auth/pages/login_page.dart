@@ -58,7 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 12),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.goToSignUp();
+                      },
                       child: Text('Não tem uma conta? Registre-se!', style: FontData.textLink()),
                     ),
                   ],
