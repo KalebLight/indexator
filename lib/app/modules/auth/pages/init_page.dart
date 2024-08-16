@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:indexator/app/core/data/utils.dart';
 
 class InitPage extends StatefulWidget {
@@ -15,9 +16,9 @@ class _InitPageState extends State<InitPage> {
     super.initState();
     verifToken().then((value) {
       if (value) {
-        GoRouter.of(context).pushReplacement('/');
+        Modular.to.navigate("/home/");
       } else {
-        GoRouter.of(context).pushReplacement('/login');
+        Modular.to.navigate("/auth/");
       }
     });
   }

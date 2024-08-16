@@ -18,7 +18,7 @@ class AuthRepository {
       if (response.statusCode == 200) return Right(LoginResponse.fromMap(response.data));
 
       throw InternalError(message: "Erro ao enviar email de recuperação de senha");
-    } on Failure catch (e, s) {
+    } on Failure catch (e) {
       return Left(e);
     } on DioException {
       return Left(RequestError(message: "Erro Recuperação Senha"));

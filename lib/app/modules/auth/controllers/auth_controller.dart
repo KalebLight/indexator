@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:indexator/app/core/data/status.dart';
 import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -27,11 +27,11 @@ class AuthController {
     var res = await authRepository.login(userEmail.text, userPassword.text);
     res.fold(
       (l) {
-        this.state = StatusError();
+        state = const StatusError();
       },
       (r) async {
         await sharedPreferences.setString('token', "Token ${r!.data.token}");
-        GoRouter.of(context).pushReplacement('/');
+        Modular.to.navigate('/home/');
       },
     );
   }

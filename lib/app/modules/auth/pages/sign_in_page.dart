@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:indexator/app/core/data/colorsData.dart';
+import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
@@ -73,9 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     SizedBox(height: 24),
                     ButtonDefault(
-                      onTap: () {
-                        print('asdhaksdhasd');
-                      },
+                      onTap: () {},
                       label: 'Cadastrar',
                       status: controller.state,
                     )

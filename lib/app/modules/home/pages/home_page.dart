@@ -7,9 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Container(
-          child: const Center(child: Text('HOMEPAGE')),
-        );
+        return const Center(child: Text('HOMEPAGE'));
       },
     );
   }

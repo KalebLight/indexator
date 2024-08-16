@@ -3,11 +3,13 @@ abstract class Failure implements Exception {
 }
 
 class InternalError implements Failure {
+  @override
   final String? message;
   InternalError({this.message});
 }
 
 class RequestError implements Failure {
+  @override
   final String? message;
   RequestError({this.message});
 }
