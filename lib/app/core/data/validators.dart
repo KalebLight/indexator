@@ -26,6 +26,12 @@ class Validators {
                         : null;
   }
 
+  static String? cPasswordValidatorSignUp(String password, String confirmPassword) {
+    if (confirmPassword.isEmpty) return "Confirme sua senha";
+    if (password != confirmPassword) return "As senhas não coincidem";
+    return null;
+  }
+
   static bool emailValidatorRegExp(text) {
     return RegExp(
             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')

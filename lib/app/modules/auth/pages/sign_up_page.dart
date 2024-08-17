@@ -32,57 +32,60 @@ class _SignUpPageState extends State<SignUpPage> {
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Center(
-            child: Container(
-              width: 400,
-              height: 400,
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: ColorsData.black_1,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextfieldWeb(
-                      validator: Validators.emailValidator,
-                      hintText: 'Digite seu nome',
-                      inputType: TextInputType.name,
-                      textEditingController: controller.userName,
-                    ),
-                    const SizedBox(height: 14),
-                    TextfieldWeb(
-                      validator: Validators.emailValidator,
-                      hintText: 'Digite seu email',
-                      inputType: TextInputType.emailAddress,
-                      textEditingController: controller.userEmail,
-                    ),
-                    const SizedBox(height: 14),
-                    TextfieldWeb(
-                      validator: Validators.emailValidator,
-                      hintText: 'Digite uma senha',
-                      inputType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      textEditingController: controller.userPassword,
-                    ),
-                    const SizedBox(height: 14),
-                    TextfieldWeb(
-                      validator: Validators.emailValidator,
-                      hintText: 'Confirme sua senha',
-                      inputType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      textEditingController: controller.userConfirmationPassword,
-                    ),
-                    const SizedBox(height: 24),
-                    ButtonDefault(
-                      onTap: () {
-                        controller.register(context);
-                      },
-                      label: 'Cadastrar',
-                      status: controller.state,
-                    )
-                  ],
+            child: IntrinsicHeight(
+              child: Container(
+                width: 400,
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  color: ColorsData.black_1,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextfieldWeb(
+                        validator: Validators.nameValidator,
+                        hintText: 'Digite seu nome',
+                        inputType: TextInputType.name,
+                        textEditingController: controller.userName,
+                      ),
+                      const SizedBox(height: 14),
+                      TextfieldWeb(
+                        validator: Validators.emailValidator,
+                        hintText: 'Digite seu email',
+                        inputType: TextInputType.emailAddress,
+                        textEditingController: controller.userEmail,
+                      ),
+                      const SizedBox(height: 14),
+                      TextfieldWeb(
+                        validator: Validators.passwordValidatorSignUp,
+                        hintText: 'Digite uma senha',
+                        inputType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        textEditingController: controller.userPassword,
+                      ),
+                      const SizedBox(height: 14),
+                      TextfieldWeb(
+                        validator: (value) => Validators.cPasswordValidatorSignUp(controller.userPassword.text, value!),
+                        hintText: 'Confirme sua senha',
+                        inputType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        textEditingController: controller.userConfirmationPassword,
+                      ),
+                      const SizedBox(height: 24),
+                      ButtonDefault(
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            controller.register(context);
+                          }
+                        },
+                        label: 'Cadastrar',
+                        status: controller.state,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
