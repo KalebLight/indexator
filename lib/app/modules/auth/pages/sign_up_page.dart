@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/sign_up_controller.dart';
@@ -83,7 +85,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                         label: 'Cadastrar',
                         status: controller.state,
-                      )
+                      ),
+                      const SizedBox(height: 12),
+                      TextButton(
+                        onPressed: () {
+                          goToLogin();
+                        },
+                        child: Text('Já possui uma conta? Faça o Login!', style: FontData.textLink()),
+                      ),
                     ],
                   ),
                 ),

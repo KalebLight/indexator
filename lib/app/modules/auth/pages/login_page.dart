@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/data/validators.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
-import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
+import 'package:indexator/app/modules/auth/controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -64,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 12),
                       TextButton(
                         onPressed: () {
-                          controller.goToSignUp();
+                          goToSignUp();
                         },
                         child: Text('Não tem uma conta? Registre-se!', style: FontData.textLink()),
                       ),
