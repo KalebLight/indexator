@@ -18,7 +18,6 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: true,
         routeInformationParser: Modular.routeInformationParser,
         routerDelegate: Modular.routerDelegate,
-        // routeInformationProvider: Modular.routeInformationParser!,
         theme: ThemeData.light(),
       ),
     );
