@@ -5,6 +5,8 @@ import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/sign_up_controller.dart';
 
+import '../../../core/data/validators.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -44,18 +46,21 @@ class _SignUpPageState extends State<SignUpPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextfieldWeb(
+                      validator: Validators.emailValidator,
                       hintText: 'Digite seu nome',
                       inputType: TextInputType.name,
                       textEditingController: controller.userName,
                     ),
                     const SizedBox(height: 14),
                     TextfieldWeb(
+                      validator: Validators.emailValidator,
                       hintText: 'Digite seu email',
                       inputType: TextInputType.emailAddress,
                       textEditingController: controller.userEmail,
                     ),
                     const SizedBox(height: 14),
                     TextfieldWeb(
+                      validator: Validators.emailValidator,
                       hintText: 'Digite uma senha',
                       inputType: TextInputType.visiblePassword,
                       obscureText: true,
@@ -63,6 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 14),
                     TextfieldWeb(
+                      validator: Validators.emailValidator,
                       hintText: 'Confirme sua senha',
                       inputType: TextInputType.visiblePassword,
                       obscureText: true,

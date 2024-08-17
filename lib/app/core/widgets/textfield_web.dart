@@ -6,13 +6,16 @@ class TextfieldWeb extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final bool? obscureText;
+  final Function? validator;
   final TextEditingController textEditingController;
+
   const TextfieldWeb(
       {super.key,
       required this.hintText,
       required this.inputType,
       this.obscureText,
-      required this.textEditingController});
+      required this.textEditingController,
+      required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +23,7 @@ class TextfieldWeb extends StatelessWidget {
       onChanged: (value) async {},
       style: FontData.body3(ColorsData.black_1),
       cursorColor: Colors.black,
-      validator: (String? value) {
-        if (value == null || value.isEmpty) {
-          return 'Por favor, digite o CPF';
-        }
-
-        return null;
-      },
+      validator: validator != null ? (text) => validator!(text) : null,
       controller: textEditingController,
       obscureText: obscureText ?? false,
       keyboardType: inputType,
@@ -42,7 +39,6 @@ class TextfieldWeb extends StatelessWidget {
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(12.0),
         ),
-
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(12.0),
