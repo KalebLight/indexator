@@ -32,8 +32,4 @@ class LoginController {
       },
     );
   }
-
-  void goToSignUp() {
-    Modular.to.pushNamed('sign-up');
-  }
 }
