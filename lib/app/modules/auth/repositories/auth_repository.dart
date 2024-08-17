@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:indexator/app/core/data/enviroment.dart';
 import 'package:indexator/app/core/data/errors.dart';
 import 'package:indexator/app/modules/auth/responses/login_response.dart';
 
@@ -11,9 +12,27 @@ class AuthRepository {
     String password,
   ) async {
     try {
-      Response response = await dio.post('http://127.0.0.1:8000/api/login', data: {
+      Response response = await dio.post('${Enviroment.urlBase}/login', data: {
         'email': email,
         'password': password,
+      });
+      if (response.statusCode == 200) return Right(LoginResponse.fromMap(response.data));
+
+      throw InternalError(message: "Erro ao enviar email de recuperação de senha");
+    } on Failure catch (e) {
+      return Left(e);
+    } on DioException {
+      return Left(RequestError(message: "Erro Recuperação Senha"));
+    }
+  }
+
+  Future<Either<Failure, LoginResponse?>> register(String name, String email, String password, String cPassword) async {
+    try {
+      Response response = await dio.post('${Enviroment.urlBase}/register', data: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'c_password': cPassword,
       });
       if (response.statusCode == 200) return Right(LoginResponse.fromMap(response.data));
 

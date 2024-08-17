@@ -5,10 +5,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return const Center(child: Text('HOMEPAGE'));
-      },
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return const Center(child: Text('HOMEPAGE'));
+        },
+      ),
     );
   }
 }

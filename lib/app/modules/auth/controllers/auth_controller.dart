@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-// import 'package:go_router/go_router.dart';
 import 'package:indexator/app/core/data/status.dart';
 import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthController {
-  final userName = TextEditingController();
+class LoginController {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
-  final userConfirmationPassword = TextEditingController();
+
   final AuthRepository authRepository;
 
-  AuthController(this.authRepository);
+  LoginController(this.authRepository);
 
   @observable
   StatusDefault state = StatusIdle();
 
-// criar um arquivo repository pra isso aqui
-// criar arquivo pra url da api
-//tem que quebrar isso aqui da mesma do meu corban app
+  @action
   login(String email, String password, BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     var res = await authRepository.login(userEmail.text, userPassword.text);
     res.fold(
       (l) {
+        //Show Alert de erro!
         state = const StatusError();
       },
       (r) async {
@@ -36,11 +33,7 @@ class AuthController {
     );
   }
 
-  final snackBar = const SnackBar(
-    content: Text(
-      'Login Deu Errado',
-      textAlign: TextAlign.center,
-    ),
-    backgroundColor: Colors.red,
-  );
+  void goToSignUp() {
+    Modular.to.pushNamed('sign-up');
+  }
 }

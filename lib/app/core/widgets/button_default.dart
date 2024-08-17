@@ -21,29 +21,20 @@ class ButtonDefault extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       clipBehavior: Clip.hardEdge,
-      borderRadius: const BorderRadius.only(
-        bottomLeft: Radius.circular(30),
-        bottomRight: Radius.circular(30),
-        topRight: Radius.circular(30),
-      ),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: InkWell(
         onTap: () => onTap.call(),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(color: ColorsData.white_1),
             boxShadow: [
               BoxShadow(color: ColorsData.black_1.withOpacity(0.25), offset: const Offset(0, 4), blurRadius: 4),
             ],
             color: backgroundColor ?? ColorsData.black_1,
           ),
-
           width: 260,
-          height: 45, //60,
+          height: 45,
           child: Center(
             child: status is StatusLoading
                 ? const SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
@@ -13,7 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final controller = Modular.get<AuthController>();
+  final controller = Modular.get<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +52,17 @@ class _LoginPageState extends State<LoginPage> {
                     ButtonDefault(
                       onTap: () async {
                         await controller.login(controller.userEmail.text, controller.userPassword.text, context);
-                        // print(controller.userEmail.text);
-                        // print(controller.userPassword.text);
                       },
                       label: 'Login',
                       status: controller.state,
-                    )
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton(
+                      onPressed: () {
+                        controller.goToSignUp();
+                      },
+                      child: Text('Não tem uma conta? Registre-se!', style: FontData.textLink()),
+                    ),
                   ],
                 ),
               ),
