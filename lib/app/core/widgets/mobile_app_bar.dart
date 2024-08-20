@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/font_data.dart';
 
 class MobileAppBar extends StatelessWidget {
   const MobileAppBar({super.key});
@@ -6,13 +9,15 @@ class MobileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
-      backgroundColor: Colors.black,
-      title: const Text('Flutter'),
-      actions: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart)),
-      ],
-    );
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: TextButton(
+            onPressed: () {
+              Modular.to.pushNamed('/');
+            },
+            child: Text(
+              'Indexator',
+              style: FontData.body3(ColorsData.white_1),
+            )));
   }
 }
