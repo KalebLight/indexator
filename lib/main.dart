@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
       module: AppModule(),
       child: MaterialApp.router(
         title: 'Indexator',
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         routeInformationParser: Modular.routeInformationParser,
         routerDelegate: Modular.routerDelegate,
         theme: ThemeData.light(),
