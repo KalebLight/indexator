@@ -87,14 +87,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           'Já possui uma conta?',
                           style: FontData.bodyEmphasis2(ColorsData.white_1),
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         TextButton(
                           onPressed: () {
                             loginController.goToLogin();
                           },
                           style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
-                              minimumSize: Size(50, 30),
+                              minimumSize: const Size(50, 30),
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               alignment: Alignment.centerLeft),
                           child: Text('Fazer login!', style: FontData.textLink()),
