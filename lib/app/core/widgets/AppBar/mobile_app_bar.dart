@@ -9,15 +9,18 @@ class MobileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.black,
-        title: TextButton(
-            onPressed: () {
-              Modular.to.pushNamed('/');
-            },
-            child: Text(
-              'Indexator',
-              style: FontData.body3(ColorsData.white_1),
-            )));
+      centerTitle: true,
+      backgroundColor: Colors.black,
+      title: TextButton(
+        onPressed: () {
+          Modular.to.pushNamed('/');
+        },
+        child: Text(
+          'Indexator',
+          style: FontData.body3(ColorsData.white_1),
+        ),
+      ),
+      iconTheme: const IconThemeData(color: ColorsData.white_1),
+    );
   }
 }
