@@ -20,7 +20,7 @@ class MobileAppBar extends StatelessWidget {
           style: FontData.body3(ColorsData.white_1),
         ),
       ),
-      iconTheme: const IconThemeData(color: ColorsData.white_1),
+      iconTheme: const IconThemeData(color: ColorsData.primary),
     );
   }
 }

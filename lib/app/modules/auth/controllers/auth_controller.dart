@@ -36,4 +36,8 @@ class LoginController {
   void goToSignUp() {
     Modular.to.pushNamed('sign-up');
   }
+
+  void goToLogin() {
+    Modular.to.pushNamed('login');
+  }
 }
