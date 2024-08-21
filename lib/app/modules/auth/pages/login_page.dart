@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final controller = Modular.get<LoginController>();
+  final loginController = Modular.get<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,29 +39,30 @@ class _LoginPageState extends State<LoginPage> {
                     TextfieldWeb(
                       hintText: 'Digite seu email',
                       inputType: TextInputType.emailAddress,
-                      textEditingController: controller.userEmail,
+                      textEditingController: loginController.userEmail,
                     ),
                     const SizedBox(height: 14),
                     TextfieldWeb(
                       hintText: 'Digite uma senha',
                       inputType: TextInputType.visiblePassword,
                       obscureText: true,
-                      textEditingController: controller.userPassword,
+                      textEditingController: loginController.userPassword,
                     ),
                     const SizedBox(height: 24),
                     ButtonDefault(
                       onTap: () async {
-                        await controller.login(controller.userEmail.text, controller.userPassword.text, context);
+                        await loginController.login(
+                            loginController.userEmail.text, loginController.userPassword.text, context);
                       },
                       label: 'Login',
-                      status: controller.state,
+                      status: loginController.state,
                     ),
                     const SizedBox(height: 12),
                     TextButton(
                       onPressed: () {
-                        controller.goToSignUp();
+                        loginController.goToSignUp();
                       },
-                      child: Text('Não tem uma conta? Registre-se!', style: FontData.textLink()),
+                      child: Text('Já possui uma conta? Faça login!', style: FontData.textLink()),
                     ),
                   ],
                 ),

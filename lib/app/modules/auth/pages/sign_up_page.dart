@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
+import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
 import 'package:indexator/app/modules/auth/controllers/sign_up_controller.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -25,6 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final loginController = Modular.get<LoginController>();
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: LayoutBuilder(
@@ -75,7 +78,29 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       label: 'Cadastrar',
                       status: controller.state,
-                    )
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Já possui uma conta?',
+                          style: FontData.bodyEmphasis2(ColorsData.white_1),
+                        ),
+                        const SizedBox(width: 4),
+                        TextButton(
+                          onPressed: () {
+                            loginController.goToLogin();
+                          },
+                          style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              minimumSize: const Size(50, 30),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              alignment: Alignment.centerLeft),
+                          child: Text('Fazer login!', style: FontData.textLink()),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
