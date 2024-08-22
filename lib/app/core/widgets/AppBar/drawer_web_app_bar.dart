@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/widgets/AppBar/drawer_item.dart';
 
@@ -30,12 +31,16 @@ class DrawerWebAppBar extends StatelessWidget {
           DrawerItem(
             icon: Icons.home,
             title: 'Home',
-            onTap: () {},
+            onTap: () {
+              Modular.to.pushNamed('/');
+            },
           ),
           DrawerItem(
             icon: Icons.link,
             title: 'Controle de URLs',
-            onTap: () {},
+            onTap: () {
+              Modular.to.pushNamed('urls');
+            },
           ),
         ],
       ),

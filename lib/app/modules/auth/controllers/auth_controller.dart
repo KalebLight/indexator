@@ -27,7 +27,7 @@ class LoginController {
         state = const StatusError();
       },
       (r) async {
-        await sharedPreferences.setString('token', "Token ${r!.data.token}");
+        await sharedPreferences.setString('token', r!.data.token);
         Modular.to.navigate('/home/');
       },
     );
