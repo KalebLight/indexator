@@ -44,24 +44,3 @@ class AuthRepository {
     }
   }
 }
-
-
-
-
-
-
-    // try {
-    //   Response response = await dio.post('http://127.0.0.1:8000/api/login', data: {
-    //     'email': email,
-    //     'password': password,
-    //   });
-    //   if (response.statusCode == 200) {
-    //     await sharedPreferences.setString('token', "Token ${response.data['data']["token"]}");
-    //     GoRouter.of(context).pushReplacement('/');
-    //     return true;
-    //   }
-    // } on DioException catch (e) {
-    //   print("ERROR:  ${e.message}");
-    //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    //   return false;
-    // }
