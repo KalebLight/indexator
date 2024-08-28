@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         loginController.goToSignUp();
                       },
-                      child: Text('Já possui uma conta? Faça login!', style: FontData.textLink()),
+                      child: Text('Não possui uma conta? Se cadastre!', style: FontData.textLink()),
                     ),
                   ],
                 ),
