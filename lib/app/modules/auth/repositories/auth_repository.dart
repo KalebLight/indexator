@@ -1,3 +1,5 @@
+// ignore_for_file: unused_catch_clause
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:indexator/app/core/data/enviroment.dart';
@@ -21,8 +23,8 @@ class AuthRepository {
       throw InternalError(message: "Erro ao enviar email de recuperação de senha");
     } on Failure catch (e) {
       return Left(e);
-    } on DioException {
-      return Left(RequestError(message: "Erro Recuperação Senha"));
+    } on DioException catch (e) {
+      return Left(RequestError(message: e.message));
     }
   }
 
