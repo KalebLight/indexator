@@ -1,3 +1,5 @@
+// ignore_for_file: unused_catch_clause
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:indexator/app/core/data/enviroment.dart';
