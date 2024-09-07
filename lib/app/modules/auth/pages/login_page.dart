@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
@@ -61,7 +62,9 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 18),
                       InkWell(
                         onTap: () {
-                          loginController.googleSignIn(context);
+                          kIsWeb
+                              ? loginController.googleSignInWeb(context)
+                              : loginController.googleSignInAndroid(context);
                         },
                         child: IntrinsicWidth(
                           child: Container(
@@ -90,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
+                      // renderButton(),
                       const SizedBox(height: 8),
                       TextButton(
                         onPressed: () {

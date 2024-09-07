@@ -49,4 +49,25 @@ class AuthRepository {
       return Left(RequestError(message: "Erro Recuperação Senha"));
     }
   }
+
+  Future<Either<Failure, LoginResponse?>> loginGoogle(String idToken) async {
+    try {
+      Response response = await dio.post(
+        '${Enviroment.urlBase}/auth/google/loginGoogleFromToken',
+        data: {
+          'idToken': idToken,
+        },
+        options: Options(
+          headers: {'Accept': "application/json"},
+        ),
+      );
+      if (response.statusCode == 200) return Right(LoginResponse.fromMap(response.data));
+
+      throw InternalError(message: "Error login");
+    } on Failure catch (e) {
+      return Left(e);
+    } on DioException catch (e) {
+      return Left(RequestError(message: "Erro ao fazer login"));
+    }
+  }
 }

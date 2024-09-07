@@ -16,6 +16,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final controller = Modular.get<SignUpController>();
+  final loginController = Modular.get<LoginController>();
   @override
   void dispose() {
     controller.userName.clear();
@@ -27,7 +28,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginController = Modular.get<LoginController>();
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: LayoutBuilder(
