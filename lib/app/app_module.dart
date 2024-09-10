@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:indexator/app/core/store/auth_store.dart';
+import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/modules/auth/auth_module.dart';
 import 'package:indexator/app/modules/auth/pages/init_page.dart';
 import 'package:indexator/app/modules/home/home_module.dart';
@@ -12,6 +14,10 @@ class AppModule extends Module {
     Bind((i) => UrlRepository()),
     Bind((i) => UrlsController(i())),
     Bind((i) => ProfileController()),
+
+    //Stores
+    Bind((i) => UserStore()),
+    Bind((i) => AuthStore()),
   ];
 
   @override
