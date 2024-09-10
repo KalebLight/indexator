@@ -3,18 +3,24 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:indexator/app/core/data/status.dart';
 import 'package:indexator/app/core/data/utils.dart';
+import 'package:indexator/app/core/store/auth_store.dart';
 import 'package:indexator/app/modules/auth/apis/google_sign_in_api.dart';
 import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginController {
+part 'auth_controller.g.dart';
+
+class AuthController = _AuthControllerBase with _$AuthController;
+
+abstract class _AuthControllerBase with Store {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
 
   final AuthRepository authRepository;
+  final AuthStore authStore;
 
-  LoginController(this.authRepository);
+  _AuthControllerBase(this.authRepository, this.authStore);
 
   @observable
   StatusDefault state = StatusIdle();
@@ -59,14 +65,12 @@ class LoginController {
           },
           (r) async {
             await sharedPreferences.setString('token', r!.data.token);
-            print(r.success);
-            print(r.data.token);
+            authStore.setUser(r.data);
           },
         );
       }
     } catch (e, s) {
-      print(e);
-      print(s);
+      //chamar error notify
     }
   }
 
@@ -87,14 +91,12 @@ class LoginController {
           },
           (r) async {
             await sharedPreferences.setString('token', r!.data.token);
-            print(r.success);
-            print(r.data.token);
+            authStore.setUser(r.data);
           },
         );
       }
     } catch (e, s) {
-      print(e);
-      print(s);
+      //chamar error notify
     }
   }
 

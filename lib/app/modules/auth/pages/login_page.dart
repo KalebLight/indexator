@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final loginController = Modular.get<LoginController>();
+  final authController = Modular.get<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,30 +41,30 @@ class _LoginPageState extends State<LoginPage> {
                       TextfieldWeb(
                         hintText: 'Digite seu email',
                         inputType: TextInputType.emailAddress,
-                        textEditingController: loginController.userEmail,
+                        textEditingController: authController.userEmail,
                       ),
                       const SizedBox(height: 14),
                       TextfieldWeb(
                         hintText: 'Digite uma senha',
                         inputType: TextInputType.visiblePassword,
                         obscureText: true,
-                        textEditingController: loginController.userPassword,
+                        textEditingController: authController.userPassword,
                       ),
                       const SizedBox(height: 24),
                       ButtonDefault(
                         onTap: () async {
-                          await loginController.login(
-                              loginController.userEmail.text, loginController.userPassword.text, context);
+                          await authController.login(
+                              authController.userEmail.text, authController.userPassword.text, context);
                         },
                         label: 'Login',
-                        status: loginController.state,
+                        status: authController.state,
                       ),
                       const SizedBox(height: 18),
                       InkWell(
                         onTap: () {
                           kIsWeb
-                              ? loginController.googleSignInWeb(context)
-                              : loginController.googleSignInAndroid(context);
+                              ? authController.googleSignInWeb(context)
+                              : authController.googleSignInAndroid(context);
                         },
                         child: IntrinsicWidth(
                           child: Container(
@@ -97,13 +97,13 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 8),
                       TextButton(
                         onPressed: () {
-                          loginController.logoutGoogle();
+                          authController.logoutGoogle();
                         },
                         child: Text('Logout Teste', style: FontData.textLink()),
                       ),
                       TextButton(
                         onPressed: () {
-                          loginController.goToSignUp();
+                          authController.goToSignUp();
                         },
                         child: Text('Não possui uma conta? Se cadastre!', style: FontData.textLink()),
                       ),

@@ -16,7 +16,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final controller = Modular.get<SignUpController>();
-  final loginController = Modular.get<LoginController>();
+  final authController = Modular.get<AuthController>();
   @override
   void dispose() {
     controller.userName.clear();
@@ -90,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         const SizedBox(width: 4),
                         TextButton(
                           onPressed: () {
-                            loginController.goToLogin();
+                            authController.goToLogin();
                           },
                           style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,

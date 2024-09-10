@@ -9,7 +9,7 @@ class AuthModule extends Module {
   @override
   final List<Bind> binds = [
     Bind((i) => AuthRepository()),
-    Bind((i) => LoginController(i())),
+    Bind((i) => AuthController(i(), i())),
     Bind((i) => SignUpController(i())),
   ];
 
