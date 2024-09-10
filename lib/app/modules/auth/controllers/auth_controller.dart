@@ -42,6 +42,9 @@ class LoginController {
   }
 
   Future googleSignInAndroid(BuildContext context) async {
+    state = StatusLoading();
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
     try {
       final GoogleSignInAccount? user = await GoogleSignInApi.signIn();
       final GoogleSignInAuthentication? auth = await user?.authentication;
@@ -49,9 +52,17 @@ class LoginController {
       if (user == null) {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        //INTEGRAR COM BACKEND
-        print('Rodando no android');
-        print(idToken);
+        var res = await authRepository.loginGoogle(idToken!);
+        res.fold(
+          (l) {
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          },
+          (r) async {
+            await sharedPreferences.setString('token', r!.data.token);
+            print(r.success);
+            print(r.data.token);
+          },
+        );
       }
     } catch (e, s) {
       print(e);
@@ -60,6 +71,8 @@ class LoginController {
   }
 
   Future googleSignInWeb(BuildContext context) async {
+    state = StatusLoading();
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
       final user = await GoogleSignInApi.signIn();
       final GoogleSignInAuthentication? auth = await user?.authentication;
@@ -72,9 +85,10 @@ class LoginController {
           (l) {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
-          (r) {
-            print(r!.success);
-            print(r!.data.token);
+          (r) async {
+            await sharedPreferences.setString('token', r!.data.token);
+            print(r.success);
+            print(r.data.token);
           },
         );
       }

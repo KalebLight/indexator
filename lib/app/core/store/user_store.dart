@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
+import 'package:mobx/mobx.dart';
 
-class UserStore {
-  UserStore();
-}
+part 'user_store.g.dart';
+
+class UserStore = _UserStoreBase with _$UserStore;
+
+abstract class _UserStoreBase with Store {}
