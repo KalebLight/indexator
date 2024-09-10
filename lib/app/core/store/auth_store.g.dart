@@ -31,18 +31,12 @@ mixin _$AuthStore on _AuthStoreBase, Store {
     });
   }
 
-  late final _$_AuthStoreBaseActionController =
-      ActionController(name: '_AuthStoreBase', context: context);
+  late final _$setUserAsyncAction =
+      AsyncAction('_AuthStoreBase.setUser', context: context);
 
   @override
-  void setUser(UserModel value) {
-    final _$actionInfo = _$_AuthStoreBaseActionController.startAction(
-        name: '_AuthStoreBase.setUser');
-    try {
-      return super.setUser(value);
-    } finally {
-      _$_AuthStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future setUser(UserModel value) {
+    return _$setUserAsyncAction.run(() => super.setUser(value));
   }
 
   @override
