@@ -15,7 +15,7 @@ class AppModule extends Module {
   final List<Bind> binds = [
     //Controllers
     Bind((i) => UrlsController(i())),
-    Bind((i) => ProfileController()),
+    Bind((i) => ProfileController(i())),
     Bind((i) => HomeController(i(), i())),
 
     //Repositories

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/modules/profile/controllers/profile_controller.dart';
 
 class WebAppBar extends StatelessWidget {
@@ -20,21 +21,49 @@ class WebAppBar extends StatelessWidget {
             },
             child: Text('Indexator', style: FontData.body3(ColorsData.white_1))),
         const Expanded(child: SizedBox.shrink()),
-        SizedBox(
-          height: 38,
-          child: OutlinedButton(
-            onPressed: () async {
-              await profileController.logout();
-            },
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.white,
-              side: const BorderSide(width: 3.0, color: Colors.white),
-            ),
-            child: const Text('Sair'),
+        PopupMenuButton<int>(
+          icon: CircleAvatar(
+            child: Text(getInitials(profileController.userStore.user!.name!)),
           ),
+          onSelected: (value) async {
+            if (value == 1) {
+              //CREATE PROFILE SCREEN
+            } else if (value == 2) {
+              await profileController.logout();
+            }
+          },
+          itemBuilder: (context) => [
+            const PopupMenuItem(
+              value: 1,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.person,
+                    color: ColorsData.gunmetal,
+                  ),
+                  SizedBox(width: 4),
+                  Text("Profile"),
+                ],
+              ),
+            ),
+            const PopupMenuItem(
+              value: 2,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.logout,
+                    color: ColorsData.gunmetal,
+                  ),
+                  SizedBox(width: 4),
+                  Text("Sign out"),
+                ],
+              ),
+            ),
+          ],
         ),
       ]),
       iconTheme: const IconThemeData(color: ColorsData.primary),
+      actions: [],
     );
   }
 }
