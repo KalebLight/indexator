@@ -5,6 +5,7 @@ class ColorsData {
   static const Color white_1 = Color(0xFFFFFFFF);
   static const Color success = Color(0xFF47C94D);
   static const Color danger = Color(0xFFC73A3A);
+  static const Color offWhite = Color(0xFFFCFCFC);
 
   static const Color primary = Color(0xFFF26430);
   static const Color secondary = Color(0xFF0081A7);

@@ -9,6 +9,7 @@ class DrawerWebAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: ColorsData.offWhite,
       child: ListView(
         children: [
           DrawerHeader(

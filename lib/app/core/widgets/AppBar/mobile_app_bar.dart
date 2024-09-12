@@ -10,7 +10,7 @@ class MobileAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: Colors.black,
+      backgroundColor: ColorsData.gunmetal,
       title: TextButton(
         onPressed: () {
           Modular.to.pushNamed('/');

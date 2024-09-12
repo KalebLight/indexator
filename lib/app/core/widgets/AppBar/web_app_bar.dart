@@ -11,7 +11,7 @@ class WebAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileController = Modular.get<ProfileController>();
     return AppBar(
-      backgroundColor: Colors.black,
+      backgroundColor: ColorsData.gunmetal,
       toolbarHeight: 72,
       title: Row(children: [
         TextButton(
@@ -27,9 +27,9 @@ class WebAppBar extends StatelessWidget {
               await profileController.logout();
             },
             style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-                side: const BorderSide(width: 3.0, color: Colors.white)),
+              foregroundColor: Colors.white,
+              side: const BorderSide(width: 3.0, color: Colors.white),
+            ),
             child: const Text('Sair'),
           ),
         ),
