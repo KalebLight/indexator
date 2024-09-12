@@ -13,3 +13,12 @@ const snackBar = SnackBar(
   ),
   backgroundColor: Colors.red,
 );
+
+String getInitials(String input) {
+  List<String> words = input.split(' ');
+  String initials = words.map((word) {
+    return word.isNotEmpty ? word[0].toUpperCase() : '';
+  }).join('');
+
+  return initials;
+}
