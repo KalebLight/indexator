@@ -24,10 +24,34 @@ mixin _$UserStore on _UserStoreBase, Store {
     });
   }
 
+  late final _$stateAtom = Atom(name: '_UserStoreBase.state', context: context);
+
+  @override
+  StatusDefault get state {
+    _$stateAtom.reportRead();
+    return super.state;
+  }
+
+  @override
+  set state(StatusDefault value) {
+    _$stateAtom.reportWrite(value, super.state, () {
+      super.state = value;
+    });
+  }
+
+  late final _$getUserDataAsyncAction =
+      AsyncAction('_UserStoreBase.getUserData', context: context);
+
+  @override
+  Future getUserData() {
+    return _$getUserDataAsyncAction.run(() => super.getUserData());
+  }
+
   @override
   String toString() {
     return '''
-user: ${user}
+user: ${user},
+state: ${state}
     ''';
   }
 }

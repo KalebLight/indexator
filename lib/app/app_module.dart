@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:indexator/app/core/repositories/user_repository.dart';
 import 'package:indexator/app/core/store/auth_store.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/modules/auth/auth_module.dart';
@@ -15,13 +16,14 @@ class AppModule extends Module {
     //Controllers
     Bind((i) => UrlsController(i())),
     Bind((i) => ProfileController()),
-    Bind((i) => HomeController(i())),
+    Bind((i) => HomeController(i(), i())),
 
     //Repositories
     Bind((i) => UrlRepository()),
+    Bind((i) => UserRepository()),
 
     //Stores
-    Bind((i) => UserStore()),
+    Bind((i) => UserStore(i())),
     Bind((i) => AuthStore()),
   ];
 

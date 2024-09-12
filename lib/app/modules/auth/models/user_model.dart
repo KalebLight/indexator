@@ -15,13 +15,13 @@ class UserModel {
 
 //repete informações do model por enquanto, até o User precisar de mais informações
 class User {
-  final String? token;
+  final String? googleToken;
   final String? name;
   final String? email;
-  final String? id;
+  final int? id;
   final String? googleId;
   User({
-    this.token,
+    this.googleToken,
     this.name,
     this.email,
     this.id,
@@ -29,17 +29,17 @@ class User {
   });
 
   User copyWith({
-    String? id,
+    int? id,
     String? name,
     String? email,
-    String? token,
+    String? googleToken,
     String? googleId,
   }) =>
       User(
         id: id ?? this.id,
         name: name ?? this.name,
         email: email ?? this.email,
-        token: token ?? this.token,
+        googleToken: googleToken ?? this.googleToken,
         googleId: googleId ?? this.googleId,
       );
 
@@ -47,14 +47,14 @@ class User {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        token: json["token"],
+        googleToken: json["google_token"],
         googleId: json["google_id"],
       );
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
         "email": email,
-        "token": token,
+        "googleToken": googleToken,
         "googleId": googleId,
       };
 }
