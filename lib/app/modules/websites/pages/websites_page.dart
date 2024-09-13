@@ -3,16 +3,16 @@ import 'package:indexator/app/core/data/breakpoints.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/widgets/PageDefault/page_default.dart';
-import 'package:indexator/app/modules/urls/widgets/new_url_pop_up.dart';
+import 'package:indexator/app/modules/websites/widgets/new_url_pop_up.dart';
 
-class URLsPage extends StatefulWidget {
-  const URLsPage({super.key});
+class WebsitesPage extends StatefulWidget {
+  const WebsitesPage({super.key});
 
   @override
-  State<URLsPage> createState() => _URLsPageState();
+  State<WebsitesPage> createState() => _WebsitesPageState();
 }
 
-class _URLsPageState extends State<URLsPage> {
+class _WebsitesPageState extends State<WebsitesPage> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -45,7 +45,7 @@ class _URLsPageState extends State<URLsPage> {
                             });
                       },
                       child: Text(
-                        '+ Adicionar URL',
+                        '+ Adicionar Website',
                         style: FontData.bodyEmphasis1(ColorsData.success),
                       ),
                     )

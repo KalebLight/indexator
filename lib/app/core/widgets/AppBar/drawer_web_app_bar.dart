@@ -33,6 +33,7 @@ class DrawerWebAppBar extends StatelessWidget {
             height: 1,
             color: Colors.grey,
           ),
+          const SizedBox(height: 12),
           DrawerItem(
             icon: Icons.home,
             title: 'Home',
@@ -44,7 +45,7 @@ class DrawerWebAppBar extends StatelessWidget {
             icon: Icons.link,
             title: 'Websites',
             onTap: () {
-              Modular.to.pushNamed('urls');
+              Modular.to.pushNamed('websites');
             },
           ),
         ],
