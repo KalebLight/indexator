@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/widgets/AppBar/drawer_item.dart';
-import 'package:indexator/app/modules/profile/controllers/profile_controller.dart';
 
 class DrawerMobileAppBar extends StatelessWidget {
   const DrawerMobileAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final profileController = Modular.get<ProfileController>();
-
     return Drawer(
       child: ListView(
         children: [
@@ -40,13 +36,6 @@ class DrawerMobileAppBar extends StatelessWidget {
             icon: Icons.link,
             title: 'Controle de URLs',
             onTap: () {},
-          ),
-          DrawerItem(
-            icon: Icons.logout,
-            title: 'Sair',
-            onTap: () {
-              profileController.logout();
-            },
           ),
         ],
       ),

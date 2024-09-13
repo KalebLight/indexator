@@ -22,12 +22,14 @@ class WebAppBar extends StatelessWidget {
             child: Text('Indexator', style: FontData.body3(ColorsData.white_1))),
         const Expanded(child: SizedBox.shrink()),
         PopupMenuButton<int>(
+          padding: EdgeInsets.zero,
           icon: CircleAvatar(
             child: Text(getInitials(profileController.userStore.user!.name!)),
+            //TODO foto de perfil (usar onBackgroundImageError)
           ),
           onSelected: (value) async {
             if (value == 1) {
-              //CREATE PROFILE SCREEN
+              //TODO CREATE PROFILE SCREEN
             } else if (value == 2) {
               await profileController.logout();
             }

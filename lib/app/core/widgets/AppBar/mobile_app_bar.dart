@@ -2,23 +2,76 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/utils.dart';
+import 'package:indexator/app/modules/profile/controllers/profile_controller.dart';
 
 class MobileAppBar extends StatelessWidget {
   const MobileAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Modular.get<ProfileController>();
     return AppBar(
       centerTitle: true,
       backgroundColor: ColorsData.gunmetal,
-      title: TextButton(
-        onPressed: () {
-          Modular.to.pushNamed('/');
-        },
-        child: Text(
-          'Indexator',
-          style: FontData.body3(ColorsData.white_1),
-        ),
+      title: Row(
+        children: [
+          TextButton(
+            onPressed: () {
+              Modular.to.pushNamed('/');
+            },
+            child: Text(
+              'Indexator',
+              style: FontData.body3(ColorsData.white_1),
+            ),
+          ),
+          const Expanded(child: SizedBox.shrink()),
+          Container(
+            height: 35,
+            child: PopupMenuButton<int>(
+              padding: EdgeInsets.zero,
+              icon: CircleAvatar(
+                child: Text(getInitials(profileController.userStore.user!.name!)),
+                //TODO foto de perfil (usar onBackgroundImageError)
+              ),
+              onSelected: (value) async {
+                if (value == 1) {
+                  //TODO CREATE PROFILE SCREEN
+                } else if (value == 2) {
+                  await profileController.logout();
+                }
+              },
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: 1,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: ColorsData.gunmetal,
+                      ),
+                      SizedBox(width: 4),
+                      Text("Profile"),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem(
+                  value: 2,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.logout,
+                        color: ColorsData.gunmetal,
+                      ),
+                      SizedBox(width: 4),
+                      Text("Sign out"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       iconTheme: const IconThemeData(color: ColorsData.primary),
     );
