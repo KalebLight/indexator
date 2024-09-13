@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/images_paths.dart';
 import 'package:indexator/app/core/widgets/AppBar/drawer_item.dart';
 
 class DrawerWebAppBar extends StatelessWidget {
@@ -12,22 +13,25 @@ class DrawerWebAppBar extends StatelessWidget {
       backgroundColor: ColorsData.offWhite,
       child: ListView(
         children: [
-          DrawerHeader(
-            child: DecoratedBox(
-              decoration: const BoxDecoration(),
-              child: Column(
-                children: [
-                  Container(
-                    height: 70,
-                    width: 70,
-                    decoration: const BoxDecoration(
-                      color: ColorsData.primary,
-                      borderRadius: BorderRadius.all(Radius.circular(100)),
-                    ),
-                  )
-                ],
+          Container(
+            height: 100,
+            child: InkWell(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                child: Container(
+                  child: Image.asset(
+                    ImagesPaths.indx,
+                  ),
+                ),
               ),
+              onTap: () {
+                Modular.to.pushNamed('/');
+              },
             ),
+          ),
+          Container(
+            height: 1,
+            color: Colors.grey,
           ),
           DrawerItem(
             icon: Icons.home,
@@ -38,7 +42,7 @@ class DrawerWebAppBar extends StatelessWidget {
           ),
           DrawerItem(
             icon: Icons.link,
-            title: 'Controle de URLs',
+            title: 'Websites',
             onTap: () {
               Modular.to.pushNamed('urls');
             },
