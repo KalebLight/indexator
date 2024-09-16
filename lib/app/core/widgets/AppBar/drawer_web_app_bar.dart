@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
+import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/images_paths.dart';
 import 'package:indexator/app/core/widgets/AppBar/drawer_item.dart';
+import 'package:indexator/app/core/widgets/divider.dart';
 
 class DrawerWebAppBar extends StatelessWidget {
   const DrawerWebAppBar({super.key});
@@ -9,25 +12,25 @@ class DrawerWebAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: ColorsData.offWhite,
       child: ListView(
         children: [
-          DrawerHeader(
-            child: DecoratedBox(
-              decoration: const BoxDecoration(),
-              child: Column(
-                children: [
-                  Container(
-                    height: 70,
-                    width: 70,
-                    decoration: const BoxDecoration(
-                      color: ColorsData.primary,
-                      borderRadius: BorderRadius.all(Radius.circular(100)),
-                    ),
-                  )
-                ],
+          SizedBox(
+            height: 100,
+            child: InkWell(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(100)),
+                child: Image.asset(
+                  ImagesPaths.indx,
+                ),
               ),
+              onTap: () {
+                Modular.to.pushNamed('/');
+              },
             ),
           ),
+          const DividerDefault(),
+          const SizedBox(height: 12),
           DrawerItem(
             icon: Icons.home,
             title: 'Home',
@@ -37,10 +40,29 @@ class DrawerWebAppBar extends StatelessWidget {
           ),
           DrawerItem(
             icon: Icons.link,
-            title: 'Controle de URLs',
+            title: 'Websites',
             onTap: () {
-              Modular.to.pushNamed('urls');
+              Modular.to.pushNamed('websites');
             },
+          ),
+          const SizedBox(height: 4),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Text(
+              'Tools',
+              style: FontData.body3(ColorsData.gunmetal),
+            ),
+          ),
+          const SizedBox(height: 4),
+          DrawerItem(
+            icon: Icons.download,
+            title: 'QuickDexing',
+            onTap: () {},
+          ),
+          DrawerItem(
+            icon: Icons.cancel_outlined,
+            title: 'Deindexing',
+            onTap: () {},
           ),
         ],
       ),

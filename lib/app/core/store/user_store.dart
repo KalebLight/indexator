@@ -25,12 +25,17 @@ abstract class _UserStoreBase with Store {
     var res = await userRepository.getUserData();
     res.fold(
       (l) {
-        state = StatusError();
+        state = const StatusError();
       },
       (r) {
         user = r;
         state = StatusSuccess();
       },
     );
+  }
+
+  @action
+  clear() {
+    user = null;
   }
 }

@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/breakpoints.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
-import 'package:indexator/app/modules/urls/widgets/new_url_popUp.dart';
+import 'package:indexator/app/core/widgets/PageDefault/page_default.dart';
+import 'package:indexator/app/core/widgets/loading_widget.dart';
+import 'package:indexator/app/modules/websites/controllers/websites_controller.dart';
+import 'package:indexator/app/modules/websites/widgets/new_url_pop_up.dart';
 
-class URLsPage extends StatefulWidget {
-  const URLsPage({super.key});
+class WebsitesPage extends StatefulWidget {
+  const WebsitesPage({super.key});
 
   @override
-  State<URLsPage> createState() => _URLsPageState();
+  State<WebsitesPage> createState() => _WebsitesPageState();
 }
 
-class _URLsPageState extends State<URLsPage> {
+class _WebsitesPageState extends State<WebsitesPage> {
+  final controller = Modular.get<WebsitesController>();
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          backgroundColor: ColorsData.gunmetal,
-          body: ListView(
+    return Observer(builder: (_) {
+      if (controller.authStore.user == null || controller.userStore.user == null) {
+        return const SizedBox(
+          child: LoadingWidget(
+            size: 200,
+          ),
+        );
+      }
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          return PageDefault(
+              body: ListView(
             children: [
               const SizedBox(height: 100),
               Center(
@@ -41,11 +55,11 @@ class _URLsPageState extends State<URLsPage> {
                               barrierDismissible: true,
                               context: context,
                               builder: (context) {
-                                return NewUrlPopup();
+                                return const NewUrlPopup();
                               });
                         },
                         child: Text(
-                          '+ Adicionar URL',
+                          '+ Adicionar Website',
                           style: FontData.bodyEmphasis1(ColorsData.success),
                         ),
                       )
@@ -54,9 +68,9 @@ class _URLsPageState extends State<URLsPage> {
                 ),
               ),
             ],
-          ),
-        );
-      },
-    );
+          ));
+        },
+      );
+    });
   }
 }

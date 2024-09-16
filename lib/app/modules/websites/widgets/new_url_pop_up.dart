@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
-import 'package:indexator/app/modules/urls/controllers/urls_controller.dart';
+import 'package:indexator/app/modules/websites/controllers/websites_controller.dart';
 
 class NewUrlPopup extends StatefulWidget {
   const NewUrlPopup({super.key});
@@ -14,14 +14,14 @@ class NewUrlPopup extends StatefulWidget {
 class _NewUrlPopupState extends State<NewUrlPopup> {
   @override
   Widget build(BuildContext context) {
-    final urlController = Modular.get<UrlsController>();
+    final urlController = Modular.get<WebsitesController>();
 
     return AlertDialog(
       title: const Text(
         'Adicione uma URL',
         textAlign: TextAlign.center,
       ),
-      content: Container(
+      content: SizedBox(
         height: 150,
         width: 400,
         child: Column(
@@ -31,7 +31,7 @@ class _NewUrlPopupState extends State<NewUrlPopup> {
               inputType: TextInputType.url,
               textEditingController: urlController.newUrlController,
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             ButtonDefault(
               onTap: () async {
                 await urlController.addUrl();

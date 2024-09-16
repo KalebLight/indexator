@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:indexator/app/core/data/enviroment.dart';
 import 'package:indexator/app/core/data/errors.dart';
-import 'package:indexator/app/modules/urls/responses/add_url_response.dart';
+import 'package:indexator/app/modules/websites/responses/add_url_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UrlRepository {

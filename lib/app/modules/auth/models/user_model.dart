@@ -20,12 +20,14 @@ class User {
   final String? email;
   final int? id;
   final String? googleId;
+  final String? profilePhoto;
   User({
     this.googleToken,
     this.name,
     this.email,
     this.id,
     this.googleId,
+    this.profilePhoto,
   });
 
   User copyWith({
@@ -34,6 +36,7 @@ class User {
     String? email,
     String? googleToken,
     String? googleId,
+    String? profilePhoto,
   }) =>
       User(
         id: id ?? this.id,
@@ -41,6 +44,7 @@ class User {
         email: email ?? this.email,
         googleToken: googleToken ?? this.googleToken,
         googleId: googleId ?? this.googleId,
+        profilePhoto: profilePhoto ?? this.profilePhoto,
       );
 
   factory User.fromMap(Map<String, dynamic> json) => User(
@@ -49,6 +53,7 @@ class User {
         email: json["email"],
         googleToken: json["google_token"],
         googleId: json["google_id"],
+        profilePhoto: json["profile_photo"] ?? '',
       );
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -56,5 +61,6 @@ class User {
         "email": email,
         "googleToken": googleToken,
         "googleId": googleId,
+        "profilePhoto": profilePhoto,
       };
 }

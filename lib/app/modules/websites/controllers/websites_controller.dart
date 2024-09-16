@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/status.dart';
-import 'package:indexator/app/modules/urls/repositories/url_repository.dart';
+import 'package:indexator/app/core/store/auth_store.dart';
+import 'package:indexator/app/core/store/user_store.dart';
+import 'package:indexator/app/modules/websites/repositories/url_repository.dart';
 import 'package:mobx/mobx.dart';
 
-class UrlsController {
+class WebsitesController {
   final UrlRepository urlRepository;
+  final UserStore userStore;
+  final AuthStore authStore;
+
   final newUrlController = TextEditingController();
 
-  UrlsController(this.urlRepository);
+  WebsitesController(this.urlRepository, this.userStore, this.authStore);
 
   @observable
   StatusDefault state = StatusIdle();
@@ -19,16 +24,15 @@ class UrlsController {
     var res = await urlRepository.addURL(newUrlController.text);
     res.fold(
       (l) {
-        //Show Alert de erro!
+        //TODO Show Alert de erro!
         state = const StatusError();
-        print(
-            'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+
         return;
       },
       (r) {
-        //Show Alert de Cadastro efetuado com sucesso!
+        //TODO Show Alert de Cadastro efetuado com sucesso!
         state = StatusSuccess();
-        print('eaeae');
+
         Modular.to.pop();
         return;
       },

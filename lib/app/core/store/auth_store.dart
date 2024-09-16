@@ -48,6 +48,7 @@ abstract class _AuthStoreBase with Store {
 
   clear() {
     user!.token = "";
+    user!.name = "";
     user = null;
   }
 }
