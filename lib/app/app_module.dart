@@ -14,7 +14,7 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     //Controllers
-    Bind((i) => WebsitesController(i())),
+    Bind((i) => WebsitesController(i(), i(), i())),
     Bind((i) => ProfileController(i())),
     Bind((i) => HomeController(i(), i())),
 

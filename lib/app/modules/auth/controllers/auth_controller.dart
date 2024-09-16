@@ -71,7 +71,7 @@ abstract class _AuthControllerBase with Store {
           },
         );
       }
-    } catch (e, s) {
+    } catch (e) {
       //chamar error notify
     }
   }
@@ -98,7 +98,7 @@ abstract class _AuthControllerBase with Store {
           },
         );
       }
-    } catch (e, s) {
+    } catch (e) {
       //chamar error notify
     }
   }

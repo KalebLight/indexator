@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             body: Center(
               child: Column(
                 children: [
-                  Text('HOMEPAGE'),
+                  const Text('HOMEPAGE'),
                   Text(controller.userStore.user!.name!),
                 ],
               ),

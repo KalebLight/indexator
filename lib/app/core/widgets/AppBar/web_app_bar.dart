@@ -65,7 +65,6 @@ class WebAppBar extends StatelessWidget {
         ),
       ]),
       iconTheme: const IconThemeData(color: ColorsData.primary),
-      actions: [],
     );
   }
 }

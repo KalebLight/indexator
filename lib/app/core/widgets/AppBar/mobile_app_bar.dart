@@ -26,7 +26,7 @@ class MobileAppBar extends StatelessWidget {
             ),
           ),
           const Expanded(child: SizedBox.shrink()),
-          Container(
+          SizedBox(
             height: 35,
             child: PopupMenuButton<int>(
               padding: EdgeInsets.zero,

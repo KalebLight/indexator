@@ -21,7 +21,7 @@ class _NewUrlPopupState extends State<NewUrlPopup> {
         'Adicione uma URL',
         textAlign: TextAlign.center,
       ),
-      content: Container(
+      content: SizedBox(
         height: 150,
         width: 400,
         child: Column(

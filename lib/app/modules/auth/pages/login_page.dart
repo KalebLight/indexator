@@ -98,13 +98,6 @@ class _LoginPageState extends State<LoginPage> {
                       // renderButton(),
                       const SizedBox(height: 8),
                       TextButton(
-                        child: Text('Logout Teste', style: FontData.textLink()),
-                        onPressed: () {
-                          profileController.logout();
-                        },
-                      ),
-
-                      TextButton(
                         onPressed: () {
                           authController.goToSignUp();
                         },
