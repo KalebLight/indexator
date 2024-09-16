@@ -1,12 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/modules/auth/apis/google_sign_in_api.dart';
+import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+part 'profile_controller.g.dart';
 
-class ProfileController {
+class ProfileController = _ProfileControllerBase with _$ProfileController;
+
+abstract class _ProfileControllerBase with Store {
   final UserStore userStore;
-
-  ProfileController(this.userStore);
+  _ProfileControllerBase(this.userStore);
 
   Future<bool> logout() async {
     Modular.to.navigate('/auth/');

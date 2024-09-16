@@ -103,12 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                           profileController.logout();
                         },
                       ),
-                      TextButton(
-                        child: Text('Teste user', style: FontData.textLink()),
-                        onPressed: () {
-                          print(profileController.userStore.user!.name);
-                        },
-                      ),
+
                       TextButton(
                         onPressed: () {
                           authController.goToSignUp();
