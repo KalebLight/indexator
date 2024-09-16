@@ -23,10 +23,15 @@ class WebAppBar extends StatelessWidget {
         const Expanded(child: SizedBox.shrink()),
         PopupMenuButton<int>(
           padding: EdgeInsets.zero,
-          icon: CircleAvatar(
-            child: Text(getInitials(profileController.userStore.user!.name!)),
-            //TODO foto de perfil (usar onBackgroundImageError)
-          ),
+          icon: profileController.userStore.user!.profilePhoto != ''
+              ? CircleAvatar(
+                  backgroundImage: NetworkImage(profileController.userStore.user!.profilePhoto!), // Imagem do usuário
+                )
+              : CircleAvatar(
+                  child: Text(
+                    getInitials(profileController.userStore.user!.name!),
+                  ),
+                ),
           onSelected: (value) async {
             if (value == 1) {
               //TODO CREATE PROFILE SCREEN
