@@ -16,8 +16,8 @@ class PageDefault extends StatelessWidget {
       return Scaffold(
         backgroundColor: ColorsData.offWhite,
         appBar: constraints.maxWidth < mobileBreakpoint
-            ? const PreferredSize(preferredSize: Size(double.infinity, 52), child: MobileAppBar())
-            : const PreferredSize(preferredSize: Size(double.infinity, 72), child: WebAppBar()),
+            ? PreferredSize(preferredSize: const Size(double.infinity, 52), child: MobileAppBar())
+            : PreferredSize(preferredSize: const Size(double.infinity, 72), child: WebAppBar()),
         drawer: constraints.maxWidth < mobileBreakpoint ? const DrawerMobileAppBar() : const DrawerWebAppBar(),
         body: body,
       );

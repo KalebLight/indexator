@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileController {
   final UserStore userStore;
+
   ProfileController(this.userStore);
 
   Future<bool> logout() async {

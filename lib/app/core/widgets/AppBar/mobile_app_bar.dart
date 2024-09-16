@@ -6,11 +6,11 @@ import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/modules/profile/controllers/profile_controller.dart';
 
 class MobileAppBar extends StatelessWidget {
-  const MobileAppBar({super.key});
+  MobileAppBar({super.key});
+  final profileController = Modular.get<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
-    final profileController = Modular.get<ProfileController>();
     return AppBar(
       centerTitle: true,
       backgroundColor: ColorsData.gunmetal,
