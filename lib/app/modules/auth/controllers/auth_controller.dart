@@ -41,6 +41,7 @@ abstract class _AuthControllerBase with Store {
       },
       (r) async {
         await sharedPreferences.setString('token', r!.data.token);
+        authStore.setUser(r.data);
         Modular.to.navigate('/home/');
         state = StatusIdle();
       },

@@ -8,12 +8,16 @@ class ProfileController {
   ProfileController(this.userStore);
 
   Future<bool> logout() async {
+    Modular.to.navigate('/auth/');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
     if (userStore.user!.googleToken != null) {
       await GoogleSignInApi.logout();
     }
-    Modular.to.navigate('/auth/');
+    userStore.clear();
+    if (userStore.user == null) {
+      return false;
+    }
     return true;
   }
 }

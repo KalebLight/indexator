@@ -47,6 +47,20 @@ mixin _$UserStore on _UserStoreBase, Store {
     return _$getUserDataAsyncAction.run(() => super.getUserData());
   }
 
+  late final _$_UserStoreBaseActionController =
+      ActionController(name: '_UserStoreBase', context: context);
+
+  @override
+  dynamic clear() {
+    final _$actionInfo = _$_UserStoreBaseActionController.startAction(
+        name: '_UserStoreBase.clear');
+    try {
+      return super.clear();
+    } finally {
+      _$_UserStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

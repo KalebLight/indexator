@@ -7,6 +7,7 @@ import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/auth/controllers/auth_controller.dart';
+import 'package:indexator/app/modules/profile/controllers/profile_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final authController = Modular.get<AuthController>();
+  final profileController = Modular.get<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +98,16 @@ class _LoginPageState extends State<LoginPage> {
                       // renderButton(),
                       const SizedBox(height: 8),
                       TextButton(
-                        onPressed: () {
-                          authController.logoutGoogle();
-                        },
                         child: Text('Logout Teste', style: FontData.textLink()),
+                        onPressed: () {
+                          profileController.logout();
+                        },
+                      ),
+                      TextButton(
+                        child: Text('Teste user', style: FontData.textLink()),
+                        onPressed: () {
+                          print(profileController.userStore.user!.name);
+                        },
                       ),
                       TextButton(
                         onPressed: () {

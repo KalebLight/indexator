@@ -32,11 +32,12 @@ class _HomePageState extends State<HomePage> {
       }
       return LayoutBuilder(
         builder: (context, constraints) {
-          return const PageDefault(
+          return PageDefault(
             body: Center(
               child: Column(
                 children: [
                   Text('HOMEPAGE'),
+                  Text(controller.userStore.user!.name!),
                 ],
               ),
             ),

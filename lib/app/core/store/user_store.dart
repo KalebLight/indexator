@@ -33,4 +33,9 @@ abstract class _UserStoreBase with Store {
       },
     );
   }
+
+  @action
+  clear() {
+    user = null;
+  }
 }
