@@ -50,12 +50,12 @@ class AuthRepository {
     }
   }
 
-  Future<Either<Failure, LoginResponse?>> loginGoogle(String idToken) async {
+  Future<Either<Failure, LoginResponse?>> loginGoogle(String accessToken) async {
     try {
       Response response = await dio.post(
         '${Enviroment.urlBase}/auth/google/loginGoogleFromToken',
         data: {
-          'idToken': idToken,
+          'accessToken': accessToken,
         },
         options: Options(
           headers: {'Accept': "application/json"},

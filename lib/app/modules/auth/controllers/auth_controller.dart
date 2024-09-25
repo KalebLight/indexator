@@ -82,11 +82,11 @@ abstract class _AuthControllerBase with Store {
     try {
       final user = await GoogleSignInApi.signIn();
       final GoogleSignInAuthentication? auth = await user?.authentication;
-      final String? idToken = auth?.accessToken;
+      final String? accessToken = auth?.accessToken;
       if (user == null) {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        var res = await authRepository.loginGoogle(idToken!);
+        var res = await authRepository.loginGoogle(accessToken!);
         res.fold(
           (l) {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
