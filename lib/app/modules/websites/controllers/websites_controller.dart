@@ -39,7 +39,6 @@ abstract class WebsitesControllerBase with Store {
         return;
       },
       (r) {
-        print('salsdalsakhsgdkajgsdjkhagsdkjhagsdjkagskjhdgajkhsgd');
         print(r!.sites);
       },
     );

@@ -4,10 +4,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/breakpoints.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/widgets/PageDefault/page_default.dart';
 import 'package:indexator/app/core/widgets/loading_widget.dart';
 import 'package:indexator/app/modules/websites/controllers/websites_controller.dart';
-import 'package:indexator/app/modules/websites/widgets/new_url_pop_up.dart';
 
 class WebsitesPage extends StatefulWidget {
   const WebsitesPage({super.key});
@@ -40,11 +40,12 @@ class _WebsitesPageState extends State<WebsitesPage> {
                   padding: const EdgeInsets.all(8),
                   width: constraints.maxWidth < mobileBreakpoint ? 400 : 700,
                   height: 300,
-                  decoration: const BoxDecoration(
-                    color: ColorsData.timberwolf,
-                    borderRadius: BorderRadius.all(
+                  decoration: BoxDecoration(
+                    color: ColorsData.white_1,
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
+                    boxShadow: [shadowBoxDefault_1],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
