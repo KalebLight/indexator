@@ -5,7 +5,11 @@ class GoogleSignInApi {
 
   static final _googleSignIn = GoogleSignIn(
     clientId: _clientIDWeb,
-    scopes: ['email'],
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/webmasters',
+    ],
+    // forceCodeForRefreshToken: true,
   );
 
   static Future signIn() => _googleSignIn.signIn();

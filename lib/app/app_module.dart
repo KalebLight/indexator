@@ -8,19 +8,21 @@ import 'package:indexator/app/modules/home/controllers/home_controller.dart';
 import 'package:indexator/app/modules/home/home_module.dart';
 import 'package:indexator/app/modules/profile/controllers/profile_controller.dart';
 import 'package:indexator/app/modules/websites/controllers/websites_controller.dart';
+import 'package:indexator/app/modules/websites/repositories/sites_repository.dart';
 import 'package:indexator/app/modules/websites/repositories/url_repository.dart';
 
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
     //Controllers
-    Bind((i) => WebsitesController(i(), i(), i())),
+    Bind((i) => WebsitesController(i(), i(), i(), i())),
     Bind((i) => ProfileController(i())),
     Bind((i) => HomeController(i(), i())),
 
     //Repositories
     Bind((i) => UrlRepository()),
     Bind((i) => UserRepository()),
+    Bind((i) => SitesRepository()),
 
     //Stores
     Bind((i) => UserStore(i())),

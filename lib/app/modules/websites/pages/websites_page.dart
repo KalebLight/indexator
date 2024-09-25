@@ -51,12 +51,7 @@ class _WebsitesPageState extends State<WebsitesPage> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          showDialog(
-                              barrierDismissible: true,
-                              context: context,
-                              builder: (context) {
-                                return const NewUrlPopup();
-                              });
+                          controller.listSitesGSC();
                         },
                         child: Text(
                           '+ Adicionar Website',
