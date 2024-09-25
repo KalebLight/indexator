@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class ColorsData {
   static const Color black_1 = Color(0xFF000000);
   static const Color white_1 = Color(0xFFFFFFFF);
+
   static const Color lightGray = Color(0xFFC0C0C0);
   static const Color success = Color(0xFF47C94D);
   static const Color danger = Color(0xFFC73A3A);
-  static const Color offWhite = Color(0xFFFCFCFC);
+  static const Color offWhite = Color(0xFFFAFAFA);
 
   static const Color primary = Color(0xFFF26430);
   static const Color secondary = Color(0xFF0081A7);
