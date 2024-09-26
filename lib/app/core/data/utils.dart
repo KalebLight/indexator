@@ -24,7 +24,7 @@ String getInitials(String input) {
   return initials;
 }
 
-final shadowBoxDefault_1 = BoxShadow(
+final boxShadowDefault_1 = BoxShadow(
   color: ColorsData.black_1.withOpacity(0.07),
   spreadRadius: 3,
   blurRadius: 3,

@@ -45,7 +45,7 @@ class _WebsitesPageState extends State<WebsitesPage> {
                     borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    boxShadow: [shadowBoxDefault_1],
+                    boxShadow: [boxShadowDefault_1],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
