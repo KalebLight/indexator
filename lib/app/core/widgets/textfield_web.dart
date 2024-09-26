@@ -6,13 +6,17 @@ class TextfieldWeb extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final bool? obscureText;
+  final Color? fillColor;
   final TextEditingController textEditingController;
-  const TextfieldWeb(
-      {super.key,
-      required this.hintText,
-      required this.inputType,
-      this.obscureText,
-      required this.textEditingController});
+
+  const TextfieldWeb({
+    super.key,
+    required this.hintText,
+    required this.inputType,
+    this.obscureText,
+    required this.textEditingController,
+    this.fillColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,7 @@ class TextfieldWeb extends StatelessWidget {
       keyboardType: inputType,
       decoration: InputDecoration(
         filled: true,
+        fillColor: fillColor,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         focusedBorder: OutlineInputBorder(
