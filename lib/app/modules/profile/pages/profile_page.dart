@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Center(
                 child: Container(
                   padding: const EdgeInsets.only(top: 24, left: 36, right: 36),
-                  width: constraints.maxWidth < mobileBreakpoint ? 400 : 500,
+                  width: constraints.maxWidth < mobileBreakpoint ? 350 : 500,
                   height: 500,
                   decoration: BoxDecoration(
                     boxShadow: [boxShadowDefault_1],
