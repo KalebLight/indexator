@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     controller.authStore.loadUser();
+    controller.userStore.getUserData();
   }
 
   final controller = Modular.get<HomeController>();

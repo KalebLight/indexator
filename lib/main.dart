@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:indexator/app/app_module.dart';
 
-void main() {
+import 'package:indexator/app/app_module.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+void main() async {
+  await Hive.initFlutter(); // Inicializa o Hive no Flutter Web ou Mobile
+  await Hive.openBox('userBox'); // Cria ou abre uma box (caixa) para armazenar dados
+
   runApp(const MainApp());
 }
 
