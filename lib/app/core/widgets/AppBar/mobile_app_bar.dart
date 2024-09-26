@@ -42,7 +42,7 @@ class MobileAppBar extends StatelessWidget {
                     ),
               onSelected: (value) async {
                 if (value == 1) {
-                  //TODO CREATE PROFILE SCREEN
+                  Modular.to.pushNamed('profilePage');
                 } else if (value == 2) {
                   await profileController.logout();
                 }

@@ -24,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final controller = Modular.get<ProfileController>();
   final homeController = Modular.get<HomeController>();
   final userStore = Modular.get<UserStore>();
+
   @override
   void initState() {
     super.initState();
