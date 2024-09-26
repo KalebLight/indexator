@@ -43,7 +43,7 @@ mixin _$UserStore on _UserStoreBase, Store {
       AsyncAction('_UserStoreBase.getUserData', context: context);
 
   @override
-  Future getUserData() {
+  Future<void> getUserData() {
     return _$getUserDataAsyncAction.run(() => super.getUserData());
   }
 
@@ -51,7 +51,7 @@ mixin _$UserStore on _UserStoreBase, Store {
       ActionController(name: '_UserStoreBase', context: context);
 
   @override
-  dynamic clear() {
+  void clear() {
     final _$actionInfo = _$_UserStoreBaseActionController.startAction(
         name: '_UserStoreBase.clear');
     try {

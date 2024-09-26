@@ -10,7 +10,9 @@ class AuthStore = _AuthStoreBase with _$AuthStore;
 
 abstract class _AuthStoreBase with Store {
   _AuthStoreBase() {
-    loadUser();
+    if (user == null) {
+      loadUser();
+    }
   }
 
   @observable

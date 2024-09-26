@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:indexator/app/core/repositories/user_repository.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/modules/home/controllers/home_controller.dart';
 import 'package:indexator/app/modules/home/pages/home_page.dart';
@@ -11,10 +12,10 @@ class HomeModule extends Module {
   final List<Bind> binds = [
     //controllers
     Bind((i) => HomeController(i(), i())),
-    Bind((i) => ProfileController(i())),
+    Bind((i) => ProfileController(i(), i())),
 
     //Stores
-    Bind((i) => UserStore(i())),
+    Bind.lazySingleton((i) => UserStore(i.get<UserRepository>())),
   ];
 
   @override
