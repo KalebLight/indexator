@@ -65,7 +65,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   child: Column(
                     children: [
-                      Text(homeController.userStore.user!.name!),
                       Text(
                         'Profile',
                         style: FontData.headline1(ColorsData.black_1),
