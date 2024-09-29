@@ -8,6 +8,7 @@ import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/core/widgets/PageDefault/page_default.dart';
+import 'package:indexator/app/core/widgets/button_default.dart';
 import 'package:indexator/app/core/widgets/loading_widget.dart';
 import 'package:indexator/app/core/widgets/textfield_web.dart';
 import 'package:indexator/app/modules/home/controllers/home_controller.dart';
@@ -58,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Container(
                   padding: const EdgeInsets.only(top: 24, left: 36, right: 36),
                   width: constraints.maxWidth < mobileBreakpoint ? 350 : 500,
-                  height: 500,
+                  height: 350,
                   decoration: BoxDecoration(
                     boxShadow: [boxShadowDefault_1],
                     color: ColorsData.white_1,
@@ -110,6 +111,35 @@ class _ProfilePageState extends State<ProfilePage> {
                         textEditingController: controller.userEmail,
                         fillColor: ColorsData.lightGray2,
                       ),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ButtonDefault(
+                            onTap: () {
+                              controller.updateUser();
+                            },
+                            label: 'Update',
+                            status: controller.state,
+                            backgroundColor: ColorsData.primary,
+                            width: 150,
+                          ),
+                          const SizedBox(width: 8),
+                          ButtonDefault(
+                            onTap: () {
+                              if (Modular.to.canPop()) {
+                                Modular.to.pop();
+                              } else {
+                                Modular.to.pushNamed('/');
+                              }
+                            },
+                            label: 'Cancelar',
+                            backgroundColor: ColorsData.lightGray,
+                            textColor: ColorsData.white_1,
+                            width: 150,
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

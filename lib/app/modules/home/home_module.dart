@@ -12,7 +12,7 @@ class HomeModule extends Module {
   final List<Bind> binds = [
     //controllers
     Bind((i) => HomeController(i(), i())),
-    Bind((i) => ProfileController(i(), i())),
+    Bind((i) => ProfileController(i(), i(), i())),
 
     //Stores
     Bind.lazySingleton((i) => UserStore(i.get<UserRepository>())),
