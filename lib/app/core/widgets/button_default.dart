@@ -2,19 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/data/status.dart';
+import 'package:indexator/app/core/data/utils.dart';
 
 class ButtonDefault extends StatefulWidget {
   final Function onTap;
   final String label;
   final Color? backgroundColor;
-  final StatusDefault status;
+  final Color? textColor;
+  final Color? borderColor;
+  final double? width;
+  final StatusDefault? status;
 
   const ButtonDefault({
     Key? key,
     required this.onTap,
     required this.label,
     this.backgroundColor,
-    required this.status,
+    this.status,
+    this.width,
+    this.textColor,
+    this.borderColor,
   }) : super(key: key);
 
   @override
@@ -40,7 +47,7 @@ class _ButtonDefaultState extends State<ButtonDefault> {
         onTap: () => widget.onTap.call(),
         onHover: (isHovering) {
           setState(() {
-            _currentColor = isHovering ? ColorsData.gunmetal : (widget.backgroundColor ?? ColorsData.gunmetal);
+            _currentColor = isHovering ? darkenColor(_currentColor) : (widget.backgroundColor ?? ColorsData.gunmetal);
           });
         },
         child: Container(
@@ -52,7 +59,7 @@ class _ButtonDefaultState extends State<ButtonDefault> {
             ],
             color: _currentColor,
           ),
-          width: 260,
+          width: widget.width ?? 240,
           height: 45,
           child: Center(
             child: widget.status is StatusLoading
@@ -65,7 +72,7 @@ class _ButtonDefaultState extends State<ButtonDefault> {
                   )
                 : Text(
                     widget.label,
-                    style: FontData.button(ColorsData.white_1),
+                    style: FontData.button(widget.textColor ?? ColorsData.white_1),
                   ),
           ),
         ),
