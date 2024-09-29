@@ -54,6 +54,23 @@ abstract class _UserStoreBase with Store {
   }
 
   @action
+  Future<void> reloadUserData() async {
+    state = StatusLoading();
+    var res = await userRepository.getUserData();
+    res.fold(
+      (l) {
+        state = const StatusError();
+      },
+      (r) {
+        user = r;
+        // Salva os dados no Hive
+        userBox.put('user', jsonEncode(user!.toMap()));
+        state = StatusSuccess();
+      },
+    );
+  }
+
+  @action
   void clear() {
     user = null;
     userBox.delete('user'); // Remove os dados do Hive

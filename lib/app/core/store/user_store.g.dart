@@ -47,6 +47,14 @@ mixin _$UserStore on _UserStoreBase, Store {
     return _$getUserDataAsyncAction.run(() => super.getUserData());
   }
 
+  late final _$reloadUserDataAsyncAction =
+      AsyncAction('_UserStoreBase.reloadUserData', context: context);
+
+  @override
+  Future<void> reloadUserData() {
+    return _$reloadUserDataAsyncAction.run(() => super.reloadUserData());
+  }
+
   late final _$_UserStoreBaseActionController =
       ActionController(name: '_UserStoreBase', context: context);
 
