@@ -30,3 +30,11 @@ final boxShadowDefault_1 = BoxShadow(
   blurRadius: 3,
   offset: const Offset(0, 0),
 );
+
+Color darkenColor(Color color, [double amount = 0.2]) {
+  final int red = (color.red * (1 - amount)).clamp(0, 255).toInt();
+  final int green = (color.green * (1 - amount)).clamp(0, 255).toInt();
+  final int blue = (color.blue * (1 - amount)).clamp(0, 255).toInt();
+
+  return Color.fromARGB(color.alpha, red, green, blue);
+}
