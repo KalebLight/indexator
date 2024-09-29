@@ -16,7 +16,7 @@ const snackBar = SnackBar(
 );
 
 String getInitials(String input) {
-  List<String> words = input.split(' ');
+  List<String> words = input.split(' ').take(2).toList();
   String initials = words.map((word) {
     return word.isNotEmpty ? word[0].toUpperCase() : '';
   }).join('');
