@@ -3,7 +3,7 @@ import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
 import 'package:indexator/app/core/data/status.dart';
 
-class ButtonDefault extends StatelessWidget {
+class ButtonDefault extends StatefulWidget {
   final Function onTap;
   final String label;
   final Color? backgroundColor;
@@ -18,12 +18,31 @@ class ButtonDefault extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _ButtonDefaultState createState() => _ButtonDefaultState();
+}
+
+class _ButtonDefaultState extends State<ButtonDefault> {
+  late Color _currentColor;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _currentColor = widget.backgroundColor ?? ColorsData.gunmetal;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ClipRRect(
       clipBehavior: Clip.hardEdge,
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: InkWell(
-        onTap: () => onTap.call(),
+        onTap: () => widget.onTap.call(),
+        onHover: (isHovering) {
+          setState(() {
+            _currentColor = isHovering ? ColorsData.gunmetal : (widget.backgroundColor ?? ColorsData.gunmetal);
+          });
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -31,12 +50,12 @@ class ButtonDefault extends StatelessWidget {
             boxShadow: [
               BoxShadow(color: ColorsData.black_1.withOpacity(0.25), offset: const Offset(0, 4), blurRadius: 4),
             ],
-            color: backgroundColor ?? ColorsData.black_1,
+            color: _currentColor,
           ),
           width: 260,
           height: 45,
           child: Center(
-            child: status is StatusLoading
+            child: widget.status is StatusLoading
                 ? const SizedBox(
                     width: 50,
                     child: LinearProgressIndicator(
@@ -45,7 +64,7 @@ class ButtonDefault extends StatelessWidget {
                     ),
                   )
                 : Text(
-                    label,
+                    widget.label,
                     style: FontData.button(ColorsData.white_1),
                   ),
           ),
