@@ -20,6 +20,13 @@ class _WebsitesPageState extends State<WebsitesPage> {
   final controller = Modular.get<WebsitesController>();
 
   @override
+  void initState() {
+    super.initState();
+    controller.authStore.loadUser();
+    controller.userStore.getUserData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
       if (controller.authStore.user == null || controller.userStore.user == null) {
