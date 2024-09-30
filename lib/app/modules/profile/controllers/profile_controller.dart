@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/status.dart';
+import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/repositories/user_repository.dart';
 import 'package:indexator/app/core/store/auth_store.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/modules/auth/apis/google_sign_in_api.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toastification/toastification.dart';
 part 'profile_controller.g.dart';
 
 class ProfileController = _ProfileControllerBase with _$ProfileController;
@@ -46,13 +48,13 @@ abstract class _ProfileControllerBase with Store {
     var res = await userRepository.updateUser(userName.text, userEmail.text);
     res.fold(
       (l) {
-        //TODO alert error
+        showAlert('Error updating user data', ToastificationType.error);
         state = const StatusError();
       },
       (r) {
-        //TODO alert SUCCESS
+        showAlert('Data saved successfully', ToastificationType.success);
         state = StatusSuccess();
-        print('DEU BOM O EDIT DE USER');
+
         userStore.reloadUserData();
       },
     );

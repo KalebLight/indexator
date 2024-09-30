@@ -8,6 +8,7 @@ import 'package:indexator/app/modules/auth/apis/google_sign_in_api.dart';
 import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toastification/toastification.dart';
 
 part 'auth_controller.g.dart';
 
@@ -57,12 +58,12 @@ abstract class _AuthControllerBase with Store {
       final GoogleSignInAuthentication? auth = await user?.authentication;
       final String? idToken = auth?.accessToken;
       if (user == null) {
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        showAlert("Error! Something went wrong!", ToastificationType.error);
       } else {
         var res = await authRepository.loginGoogle(idToken!);
         res.fold(
           (l) {
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            showAlert("Error! Something went wrong!", ToastificationType.error);
           },
           (r) async {
             await sharedPreferences.setString('token', r!.data.token);
@@ -84,12 +85,12 @@ abstract class _AuthControllerBase with Store {
       final GoogleSignInAuthentication? auth = await user?.authentication;
       final String? accessToken = auth?.accessToken;
       if (user == null) {
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        showAlert("Error! Something went wrong!", ToastificationType.error);
       } else {
         var res = await authRepository.loginGoogle(accessToken!);
         res.fold(
           (l) {
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            showAlert("Error! Something went wrong!", ToastificationType.error);
           },
           (r) async {
             await sharedPreferences.setString('token', r!.data.token);

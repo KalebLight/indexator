@@ -40,9 +40,8 @@ Color darkenColor(Color color, [double amount = 0.2]) {
   return Color.fromARGB(color.alpha, red, green, blue);
 }
 
-void showAlert(BuildContext context, String message, ToastificationType? type) {
+void showAlert(String message, ToastificationType? type) {
   toastification.show(
-    context: context,
     title: Text(message),
     type: type,
     style: ToastificationStyle.minimal,

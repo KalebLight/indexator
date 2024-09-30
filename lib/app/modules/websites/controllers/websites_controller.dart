@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/status.dart';
+import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/store/auth_store.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/modules/websites/repositories/sites_repository.dart';
 import 'package:indexator/app/modules/websites/repositories/url_repository.dart';
 import 'package:indexator/app/modules/websites/responses/list_sites_response.dart';
 import 'package:mobx/mobx.dart';
+import 'package:toastification/toastification.dart';
 
 part 'websites_controller.g.dart';
 
@@ -50,15 +52,13 @@ abstract class WebsitesControllerBase with Store {
     var res = await urlRepository.addURL(newUrlController.text);
     res.fold(
       (l) {
-        //TODO Show Alert de erro!
+        showAlert('Error saving URL', ToastificationType.error);
         state = const StatusError();
-
         return;
       },
       (r) {
-        //TODO Show Alert de Cadastro efetuado com sucesso!
+        showAlert('URL saved successfully', ToastificationType.success);
         state = StatusSuccess();
-
         Modular.to.pop();
         return;
       },

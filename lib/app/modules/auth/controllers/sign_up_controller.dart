@@ -4,6 +4,7 @@ import 'package:indexator/app/core/data/status.dart';
 import 'package:indexator/app/modules/auth/repositories/auth_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:indexator/app/core/data/utils.dart';
+import 'package:toastification/toastification.dart';
 
 class SignUpController {
   final userName = TextEditingController();
@@ -30,13 +31,12 @@ class SignUpController {
         await authRepository.register(userName.text, userEmail.text, userPassword.text, userConfirmationPassword.text);
     res.fold(
       (l) {
-        //Show Alert de erro!
+        showAlert("Registration incomplete! Error!", ToastificationType.error);
         state = const StatusError();
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         return;
       },
       (r) {
-        //Show Alert de Cadastro efetuado com sucesso!
+        showAlert("Registration successful! Welcome!", ToastificationType.success);
         dispose();
         Modular.to.navigate('/auth/');
         return;

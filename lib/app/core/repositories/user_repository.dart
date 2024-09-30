@@ -40,14 +40,12 @@ class UserRepository {
           options: Options(
             headers: {'Accept': "application/json", 'Authorization': "Bearer ${sharedPreferences.get('token')}"},
           ));
-
-//VER CODIGO DE RESPOSTA
       if (response.statusCode == 200) return Right(User.fromMap(response.data));
 
       throw InternalError(message: "Error");
     } on Failure catch (e) {
       return Left(e);
-    } on DioException catch (e) {
+    } on DioException {
       return Left(RequestError(message: "Error"));
     }
   }
