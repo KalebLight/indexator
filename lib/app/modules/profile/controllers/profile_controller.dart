@@ -39,6 +39,7 @@ abstract class _ProfileControllerBase with Store {
 
   @action
   Future updateUser() async {
+    state = StatusLoading();
     if ((userName.text == userStore.user?.name) && (userEmail.text == userStore.user?.email)) {
       return;
     }
@@ -53,7 +54,6 @@ abstract class _ProfileControllerBase with Store {
         state = StatusSuccess();
         print('DEU BOM O EDIT DE USER');
         userStore.reloadUserData();
-        Modular.to.pop();
       },
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:indexator/app/core/data/breakpoints.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:indexator/app/core/data/font_data.dart';
+import 'package:indexator/app/core/data/status.dart';
 import 'package:indexator/app/core/data/utils.dart';
 import 'package:indexator/app/core/store/user_store.dart';
 import 'package:indexator/app/core/widgets/PageDefault/page_default.dart';
@@ -43,108 +44,118 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
-      if (controller.authStore.user == null || controller.userStore.user == null) {
+      if ((controller.authStore.user == null || controller.userStore.user == null) ||
+          (controller.state is StatusLoading)) {
         return const SizedBox(
           child: LoadingWidget(
             size: 200,
           ),
         );
       }
+
       return LayoutBuilder(builder: (context, constraints) {
         return PageDefault(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 24, left: 36, right: 36),
-                  width: constraints.maxWidth < mobileBreakpoint ? 350 : 500,
-                  height: 350,
-                  decoration: BoxDecoration(
-                    boxShadow: [boxShadowDefault_1],
-                    color: ColorsData.white_1,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Profile',
-                        style: FontData.headline1(ColorsData.black_1),
+          body: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 24, left: 36, right: 36),
+                      width: constraints.maxWidth < mobileBreakpoint ? 350 : 500,
+                      height: 350,
+                      decoration: BoxDecoration(
+                        boxShadow: [boxShadowDefault_1],
+                        color: ColorsData.white_1,
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
                       ),
-                      const SizedBox(height: 12),
-                      Row(
+                      child: Column(
                         children: [
                           Text(
-                            'Name',
-                            style: FontData.bodyEmphasis2(ColorsData.black_1),
+                            'Profile',
+                            style: FontData.headline1(ColorsData.black_1),
                           ),
-                          Text(
-                            '*',
-                            style: FontData.bodyEmphasis2(ColorsData.danger),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Text(
+                                'Name',
+                                style: FontData.bodyEmphasis2(ColorsData.black_1),
+                              ),
+                              Text(
+                                '*',
+                                style: FontData.bodyEmphasis2(ColorsData.danger),
+                              ),
+                            ],
                           ),
+                          const SizedBox(height: 8),
+                          TextfieldWeb(
+                            hintText: 'Name',
+                            inputType: TextInputType.name,
+                            textEditingController: controller.userName,
+                            fillColor: ColorsData.lightGray2,
+                          ),
+                          const SizedBox(height: 24),
+                          Row(
+                            children: [
+                              Text(
+                                'Email',
+                                style: FontData.bodyEmphasis2(ColorsData.black_1),
+                              ),
+                              Text(
+                                '*',
+                                style: FontData.bodyEmphasis2(ColorsData.danger),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          TextfieldWeb(
+                            hintText: 'Email',
+                            inputType: TextInputType.emailAddress,
+                            textEditingController: controller.userEmail,
+                            fillColor: ColorsData.lightGray2,
+                          ),
+                          const SizedBox(height: 24),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ButtonDefault(
+                                onTap: () async {
+                                  await controller.updateUser();
+                                  if (controller.state is StatusSuccess) {
+                                    Modular.to.pushNamed('/');
+                                  }
+                                },
+                                label: 'Save changes',
+                                status: controller.state,
+                                backgroundColor: ColorsData.primary,
+                                width: constraints.maxWidth < mobileBreakpoint ? 115 : 150,
+                              ),
+                              const SizedBox(width: 8),
+                              ButtonDefault(
+                                onTap: () {
+                                  if (Modular.to.canPop()) {
+                                    Modular.to.pop();
+                                  } else {
+                                    Modular.to.pushNamed('/');
+                                  }
+                                },
+                                label: 'Cancelar',
+                                backgroundColor: ColorsData.lightGray,
+                                textColor: ColorsData.white_1,
+                                width: constraints.maxWidth < mobileBreakpoint ? 115 : 150,
+                              ),
+                            ],
+                          )
                         ],
                       ),
-                      const SizedBox(height: 8),
-                      TextfieldWeb(
-                        hintText: 'Name',
-                        inputType: TextInputType.name,
-                        textEditingController: controller.userName,
-                        fillColor: ColorsData.lightGray2,
-                      ),
-                      const SizedBox(height: 24),
-                      Row(
-                        children: [
-                          Text(
-                            'Email',
-                            style: FontData.bodyEmphasis2(ColorsData.black_1),
-                          ),
-                          Text(
-                            '*',
-                            style: FontData.bodyEmphasis2(ColorsData.danger),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      TextfieldWeb(
-                        hintText: 'Email',
-                        inputType: TextInputType.emailAddress,
-                        textEditingController: controller.userEmail,
-                        fillColor: ColorsData.lightGray2,
-                      ),
-                      const SizedBox(height: 24),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ButtonDefault(
-                            onTap: () {
-                              controller.updateUser();
-                            },
-                            label: 'Update',
-                            status: controller.state,
-                            backgroundColor: ColorsData.primary,
-                            width: 150,
-                          ),
-                          const SizedBox(width: 8),
-                          ButtonDefault(
-                            onTap: () {
-                              if (Modular.to.canPop()) {
-                                Modular.to.pop();
-                              } else {
-                                Modular.to.pushNamed('/');
-                              }
-                            },
-                            label: 'Cancelar',
-                            backgroundColor: ColorsData.lightGray,
-                            textColor: ColorsData.white_1,
-                            width: 150,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         );
       });
