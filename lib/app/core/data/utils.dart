@@ -46,6 +46,6 @@ void showAlert(BuildContext context, String message, ToastificationType? type) {
     title: Text(message),
     type: type,
     style: ToastificationStyle.minimal,
-    autoCloseDuration: const Duration(seconds: 5),
+    autoCloseDuration: const Duration(seconds: 4),
   );
 }
