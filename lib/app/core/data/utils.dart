@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:indexator/app/core/data/colors_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toastification/toastification.dart';
 
 Future<bool> verifToken() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -37,4 +38,14 @@ Color darkenColor(Color color, [double amount = 0.2]) {
   final int blue = (color.blue * (1 - amount)).clamp(0, 255).toInt();
 
   return Color.fromARGB(color.alpha, red, green, blue);
+}
+
+void showAlert(BuildContext context, String message, ToastificationType? type) {
+  toastification.show(
+    context: context,
+    title: Text(message),
+    type: type,
+    style: ToastificationStyle.minimal,
+    autoCloseDuration: const Duration(seconds: 5),
+  );
 }

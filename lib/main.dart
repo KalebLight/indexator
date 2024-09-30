@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:indexator/app/app_module.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:toastification/toastification.dart';
 
 void main() async {
   await Hive.initFlutter(); // Inicializa o Hive no Flutter Web ou Mobile
@@ -16,14 +17,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ModularApp(
-      module: AppModule(),
-      child: MaterialApp.router(
-        title: 'Indexator',
-        debugShowCheckedModeBanner: false,
-        routeInformationParser: Modular.routeInformationParser,
-        routerDelegate: Modular.routerDelegate,
-        theme: ThemeData.light(),
+    return ToastificationWrapper(
+      child: ModularApp(
+        module: AppModule(),
+        child: MaterialApp.router(
+          title: 'Indexator',
+          debugShowCheckedModeBanner: false,
+          routeInformationParser: Modular.routeInformationParser,
+          routerDelegate: Modular.routerDelegate,
+          theme: ThemeData.light(),
+        ),
       ),
     );
   }
