@@ -55,6 +55,15 @@ class User {
         googleId: json["google_id"],
         profilePhoto: json["profile_photo"] ?? '',
       );
+
+  factory User.fromMapHive(Map<String, dynamic> json) => User(
+        id: json["id"],
+        name: json["name"],
+        email: json["email"],
+        googleToken: json["googleToken"],
+        googleId: json["googleId"],
+        profilePhoto: json["profilePhoto"] ?? '',
+      );
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,

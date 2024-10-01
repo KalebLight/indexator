@@ -31,7 +31,7 @@ abstract class _UserStoreBase with Store {
   Future<void> getUserData() async {
     String? userData = userBox.get('user');
     if (userData != null) {
-      user = User.fromMap(jsonDecode(userData));
+      user = User.fromMapHive(jsonDecode(userData));
     }
 
     if (user == null) {
@@ -69,6 +69,6 @@ abstract class _UserStoreBase with Store {
   @action
   void clear() {
     user = null;
-    userBox.delete('user'); // Remove os dados do Hive
+    userBox.delete('user');
   }
 }
