@@ -28,13 +28,6 @@ abstract class _UserStoreBase with Store {
   }
 
   @action
-  void clearData() {
-    userBox.deleteAll(['user']);
-    user = null;
-    getUserData();
-  }
-
-  @action
   Future<void> getUserData() async {
     String? userData = userBox.get('user');
     if (userData != null) {
