@@ -51,9 +51,9 @@ class User {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        googleToken: json["googleToken"],
-        googleId: json["googleId"],
-        profilePhoto: json["profilePhoto"] ?? '',
+        googleToken: json["google_token"],
+        googleId: json["google_id"],
+        profilePhoto: json["profile_photo"] ?? '',
       );
   Map<String, dynamic> toMap() => {
         "id": id,

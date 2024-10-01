@@ -13,7 +13,6 @@ class UserStore = _UserStoreBase with _$UserStore;
 abstract class _UserStoreBase with Store {
   final UserRepository userRepository;
   late Box userBox;
-  // final Storage _localStorage = window.localStorage;
   _UserStoreBase(this.userRepository) {
     initHive();
   }
@@ -29,14 +28,20 @@ abstract class _UserStoreBase with Store {
   }
 
   @action
+  void clearData() {
+    userBox.deleteAll(['user']);
+    user = null;
+    getUserData();
+  }
+
+  @action
   Future<void> getUserData() async {
-    String? userData = userBox.get('user'); // Recupera os dados do Hive
+    String? userData = userBox.get('user');
     if (userData != null) {
       user = User.fromMap(jsonDecode(userData));
     }
 
     if (user == null) {
-      // Se não encontrar nada armazenado, faz a requisição
       state = StatusLoading();
       var res = await userRepository.getUserData();
       res.fold(
@@ -45,7 +50,6 @@ abstract class _UserStoreBase with Store {
         },
         (r) {
           user = r;
-          // Salva os dados no Hive
           userBox.put('user', jsonEncode(user!.toMap()));
           state = StatusSuccess();
         },
@@ -63,7 +67,6 @@ abstract class _UserStoreBase with Store {
       },
       (r) {
         user = r;
-        // Salva os dados no Hive
         userBox.put('user', jsonEncode(user!.toMap()));
         state = StatusSuccess();
       },
