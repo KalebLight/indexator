@@ -30,16 +30,18 @@ class MobileAppBar extends StatelessWidget {
             height: 35,
             child: PopupMenuButton<int>(
               padding: EdgeInsets.zero,
-              icon: profileController.userStore.user!.profilePhoto != ''
-                  ? CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(profileController.userStore.user!.profilePhoto!), // Imagem do usuário
-                    )
-                  : CircleAvatar(
-                      child: Text(
-                        getInitials(profileController.userStore.user!.name!),
-                      ),
-                    ),
+              icon: ClipOval(
+                child: Image.network(
+                  profileController.userStore.user!.profilePhoto!,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return CircleAvatar(
+                        child: Text(
+                      getInitials(profileController.userStore.user!.name!),
+                    ));
+                  },
+                ),
+              ),
               onSelected: (value) async {
                 if (value == 1) {
                   Modular.to.pushNamed('profilePage');

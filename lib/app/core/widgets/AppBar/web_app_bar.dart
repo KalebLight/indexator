@@ -21,52 +21,58 @@ class WebAppBar extends StatelessWidget {
             },
             child: Text('Indexator', style: FontData.body3(ColorsData.white_1))),
         const Expanded(child: SizedBox.shrink()),
-        PopupMenuButton<int>(
-          padding: EdgeInsets.zero,
-          icon: profileController.userStore.user!.profilePhoto != ''
-              ? CircleAvatar(
-                  backgroundImage: NetworkImage(profileController.userStore.user!.profilePhoto!), // Imagem do usuário
-                )
-              : CircleAvatar(
-                  child: Text(
+        SizedBox(
+          height: 45,
+          child: PopupMenuButton<int>(
+            padding: EdgeInsets.zero,
+            icon: ClipOval(
+              child: Image.network(
+                profileController.userStore.user!.profilePhoto!,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return CircleAvatar(
+                      child: Text(
                     getInitials(profileController.userStore.user!.name!),
-                  ),
+                  ));
+                },
+              ),
+            ),
+            onSelected: (value) async {
+              if (value == 1) {
+                Modular.to.pushNamed('profilePage');
+              } else if (value == 2) {
+                await profileController.logout();
+              }
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: 1,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: ColorsData.gunmetal,
+                    ),
+                    SizedBox(width: 4),
+                    Text("Profile"),
+                  ],
                 ),
-          onSelected: (value) async {
-            if (value == 1) {
-              Modular.to.pushNamed('profilePage');
-            } else if (value == 2) {
-              await profileController.logout();
-            }
-          },
-          itemBuilder: (context) => [
-            const PopupMenuItem(
-              value: 1,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.person,
-                    color: ColorsData.gunmetal,
-                  ),
-                  SizedBox(width: 4),
-                  Text("Profile"),
-                ],
               ),
-            ),
-            const PopupMenuItem(
-              value: 2,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.logout,
-                    color: ColorsData.gunmetal,
-                  ),
-                  SizedBox(width: 4),
-                  Text("Sign out"),
-                ],
+              const PopupMenuItem(
+                value: 2,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.logout,
+                      color: ColorsData.gunmetal,
+                    ),
+                    SizedBox(width: 4),
+                    Text("Sign out"),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ]),
       iconTheme: const IconThemeData(color: ColorsData.primary),
